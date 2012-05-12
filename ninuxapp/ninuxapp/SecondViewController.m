@@ -7,6 +7,7 @@
 //
 
 #import "SecondViewController.h"
+#import "SBJson.h"
 
 @interface SecondViewController ()
 
@@ -23,10 +24,37 @@
     }
     return self;
 }
-							
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSError* error = nil;
+    NSString *rawJson = [NSString stringWithContentsOfURL:[NSURL URLWithString: @"http://map.ninux.org/nodes.json"] encoding:NSASCIIStringEncoding error:&error];
+    
+    NSDictionary *items = [rawJson JSONValue];
+    NSDictionary *nodes = [items valueForKeyPath:@"potential"];
+    
+    NSArray *keys = [nodes allKeys];
+    int count = 0;
+    for (NSString *key in keys) {
+        NSDictionary *node = [nodes objectForKey:key];
+        NSLog(@"Nome nodo: %@\n",[node objectForKey:@"name"]);
+        NSLog(@"Stato nodo: %@\n",[node objectForKey:@"status"]);
+        if (![node objectForKey:@"dummy"])NSLog(@"dato non presente");
+        count ++;
+    }
+    
+    NSLog(@"Totale numero di nodi: %i",count);
+    
+    
+    
+    
+    
+    
+    
+    
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

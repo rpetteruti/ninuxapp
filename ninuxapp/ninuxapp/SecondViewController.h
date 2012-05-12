@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SBJson.h"
 
-@interface SecondViewController : UIViewController
+@interface SecondViewController : UIViewController{
+    
+
+    
+    
+}
 
 @end
