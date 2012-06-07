@@ -64,21 +64,28 @@
     NSDictionary *items = [rawJson JSONValue];
     NSDictionary *nodes = [items valueForKeyPath:@"active"];
     
+    
+    if (TRUE) {//TODO we have to do the clean of the database only if there is a new version of the json
+        sqlite3_stmt *statement;
+        NSString *deleteSQL = @"DELETE FROM \"main\".\"nodes\"";        
+        const char *delete_stmt = [deleteSQL UTF8String];
+        sqlite3_prepare_v2(database, delete_stmt, -1, &statement, NULL);
+        if(sqlite3_step(statement) == SQLITE_DONE){
+            NSLog(@"Delete successful nodes");
+        }else{
+            NSLog(@"Delete failed");
+        }
+        sqlite3_finalize(statement); 
+    }
+    
     NSArray *keys = [nodes allKeys];
     int count = 0;
     if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
-        
         for (NSString *key in keys) {
             NSDictionary *node = [nodes objectForKey:key];
             NSLog(@"Node name: %@\n",[node objectForKey:@"name"]);
             NSLog(@"Node status: %@\n",[node objectForKey:@"status"]);
             //if (![node objectForKey:@"dummy"])NSLog(@"dato non presente");
-            
-            
-            
-            
-            
-            
             const char *sql_ins = "";
             
             sqlite3_stmt *insert_statement;
@@ -100,9 +107,6 @@
                 
                 //NSLog(@"Node added");
             }
-            
-            
-            
             count ++;
         }
         sqlite3_close(database);
@@ -110,8 +114,7 @@
     }else {
         sqlite3_close(database);
         NSLog(@"Error in databse connection");
-    }
-    
+    }    
     NSLog(@"Number of nodes: %i",count);
     [self populateMapFromDB];
 }
@@ -131,24 +134,16 @@
 	if (!success) {
 		NSAssert1(0, @"Failed to create writable database file with message ‘%@’.", [error localizedDescription]);
 		NSLog(@"Failed to create writable database file with message ‘%@’.", [error localizedDescription]);
-		
 	}
 }
 
 -(void)populateMapFromDB{
-    
-    
-    
-    int power=0;
     sqlite3_stmt *selectstmt;
 	const char *sql = "select name,lat,lng,type from nodes";
     NSLog(@"writable path:%@",writableDBPath);
     if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
         
-		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
-            
-		
-    
+		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {   
 			
 			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
                 
@@ -165,14 +160,10 @@
                 
                 [map addAnnotation:annotationPoint];
                 NSLog(@"added");
-               
+                
             }
         }
-    }
-
-    
-    
-
+    } 
 }
 
 @end
