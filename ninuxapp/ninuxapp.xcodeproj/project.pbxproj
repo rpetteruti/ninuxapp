@@ -33,6 +33,10 @@
 		B5C22148155E9E4E0065E0CD /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C22147155E9E4E0065E0CD /* second@2x.png */; };
 		B5C2214B155E9E4E0065E0CD /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5C22149155E9E4E0065E0CD /* FirstViewController.xib */; };
 		B5C2214E155E9E4E0065E0CD /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5C2214C155E9E4E0065E0CD /* SecondViewController.xib */; };
+		B5D225B215810AC700F1D7DC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D225B115810AC700F1D7DC /* libsqlite3.0.dylib */; };
+		B5D225B81581141800F1D7DC /* nodes.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B5D225B71581141800F1D7DC /* nodes.sqlite */; };
+		B5F92A351580DD0D0086B6A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F92A341580DD0D0086B6A0 /* MapKit.framework */; };
+		B5F92A3D1580E4660086B6A0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F92A3C1580E4660086B6A0 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +85,10 @@
 		B5C22147155E9E4E0065E0CD /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		B5C2214A155E9E4E0065E0CD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController.xib; sourceTree = "<group>"; };
 		B5C2214D155E9E4E0065E0CD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
+		B5D225B115810AC700F1D7DC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		B5D225B71581141800F1D7DC /* nodes.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = nodes.sqlite; sourceTree = "<group>"; };
+		B5F92A341580DD0D0086B6A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B5F92A3C1580E4660086B6A0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5D225B215810AC700F1D7DC /* libsqlite3.0.dylib in Frameworks */,
+				B5F92A3D1580E4660086B6A0 /* CoreLocation.framework in Frameworks */,
+				B5F92A351580DD0D0086B6A0 /* MapKit.framework in Frameworks */,
 				B5C2212A155E9E4E0065E0CD /* UIKit.framework in Frameworks */,
 				B5C2212C155E9E4E0065E0CD /* Foundation.framework in Frameworks */,
 				B5C2212E155E9E4E0065E0CD /* CoreGraphics.framework in Frameworks */,
@@ -132,6 +143,10 @@
 		B5C2211A155E9E4E0065E0CD = {
 			isa = PBXGroup;
 			children = (
+				B5D225B115810AC700F1D7DC /* libsqlite3.0.dylib */,
+				B5D225B71581141800F1D7DC /* nodes.sqlite */,
+				B5F92A3C1580E4660086B6A0 /* CoreLocation.framework */,
+				B5F92A341580DD0D0086B6A0 /* MapKit.framework */,
 				B519BEB3155ECEB500B3EC92 /* SBJson */,
 				B5C2212F155E9E4E0065E0CD /* ninuxapp */,
 				B5C22128155E9E4E0065E0CD /* Frameworks */,
@@ -245,6 +260,7 @@
 				B5C22148155E9E4E0065E0CD /* second@2x.png in Resources */,
 				B5C2214B155E9E4E0065E0CD /* FirstViewController.xib in Resources */,
 				B5C2214E155E9E4E0065E0CD /* SecondViewController.xib in Resources */,
+				B5D225B81581141800F1D7DC /* nodes.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
