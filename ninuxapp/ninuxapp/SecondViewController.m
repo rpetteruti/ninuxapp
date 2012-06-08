@@ -62,53 +62,70 @@
     NSString *rawJson = [NSString stringWithContentsOfURL:[NSURL URLWithString: @"http://map.ninux.org/nodes.json"] encoding:NSASCIIStringEncoding error:&error];
     
     NSDictionary *items = [rawJson JSONValue];
-    NSDictionary *nodes = [items valueForKeyPath:@"active"];
-    
-    
-    if (TRUE) {//TODO we have to do the clean of the database only if there is a new version of the json
-        sqlite3_stmt *statement;
-        NSString *deleteSQL = @"DELETE FROM \"main\".\"nodes\"";        
-        const char *delete_stmt = [deleteSQL UTF8String];
-        sqlite3_prepare_v2(database, delete_stmt, -1, &statement, NULL);
-        if(sqlite3_step(statement) == SQLITE_DONE){
-            NSLog(@"Delete successful nodes");
-        }else{
-            NSLog(@"Delete failed");
-        }
-        sqlite3_finalize(statement); 
-    }
-    
-    NSArray *keys = [nodes allKeys];
+    NSArray *types = [items allKeys];//here i have all the types of the nodes
+
     int count = 0;
     if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
-        for (NSString *key in keys) {
-            NSDictionary *node = [nodes objectForKey:key];
-            NSLog(@"Node name: %@\n",[node objectForKey:@"name"]);
-            NSLog(@"Node status: %@\n",[node objectForKey:@"status"]);
-            //if (![node objectForKey:@"dummy"])NSLog(@"dato non presente");
-            const char *sql_ins = "";
-            
-            sqlite3_stmt *insert_statement;
-            if (sqlite3_prepare_v2(database, sql_ins, -1, &insert_statement, NULL) != SQLITE_OK)
-            {
-                NSAssert1(0, @"Error: failed to prepare statement with message ‘%s’.", sqlite3_errmsg(database));
-            }else {
-                sqlite3_stmt *statement;
-                NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO nodes (name,lat,lng,type) VALUES(\"%@\",\"%@\",\"%@\",\"%@\")",[node objectForKey:@"name"],[node objectForKey:@"lat"],[node objectForKey:@"lng"],[node objectForKey:@"status"]];
-                NSLog(@"insertSQL: %@",insertSQL);
-                const char *insert_stmt = [insertSQL UTF8String];
-                sqlite3_prepare_v2(database, insert_stmt, -1, &statement, NULL);
-                if(sqlite3_step(statement) == SQLITE_DONE){
-                    NSLog(@"Insert successful node");
-                }else{
-                    NSLog(@"Insert failed");
-                }
-                sqlite3_finalize(statement); 
-                
-                //NSLog(@"Node added");
+        if (TRUE) {//TODO we have to do the clean of the database only if there is a new version of the json
+            sqlite3_stmt *statement;
+            NSString *deleteSQL = @"DELETE FROM nodes";        
+            const char *delete_stmt = [deleteSQL UTF8String];
+            sqlite3_prepare_v2(database, delete_stmt, -1, &statement, NULL);
+            if(sqlite3_step(statement) == SQLITE_DONE){
+                NSLog(@"Delete successful nodes");
+            }else{
+                NSLog(@"Delete failed");
+                NSAssert1(0, @"Error while deleting. '%s'", sqlite3_errmsg(database));
             }
-            count ++;
+            sqlite3_finalize(statement); 
+            
+            //now we re-populate the database with new values from json file
+            
+            for (NSString *type in types) {
+                NSLog(@"tipo: %@",type);
+                if(![type isEqualToString:@"links"]){
+                    NSDictionary *nodes = [items valueForKeyPath:type];
+                    NSArray *keys = [nodes allKeys];
+                    
+                    for (NSString *key in keys) {
+                        NSDictionary *node = [nodes objectForKey:key];
+                        NSLog(@"Node name: %@\n",[node objectForKey:@"name"]);
+                        NSLog(@"Node status: %@\n",[node objectForKey:@"status"]);
+                        //if (![node objectForKey:@"dummy"])NSLog(@"dato non presente");
+                        const char *sql_ins = "";
+                        
+                        sqlite3_stmt *insert_statement;
+                        if (sqlite3_prepare_v2(database, sql_ins, -1, &insert_statement, NULL) != SQLITE_OK)
+                        {
+                            NSAssert1(0, @"Error: failed to prepare statement with message ‘%s’.", sqlite3_errmsg(database));
+                        }else {
+                            sqlite3_stmt *statement;
+                            NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO nodes (name,lat,lng,type) VALUES(\"%@\",\"%@\",\"%@\",\"%@\")",[node objectForKey:@"name"],[node objectForKey:@"lat"],[node objectForKey:@"lng"],[node objectForKey:@"status"]];
+                            NSLog(@"insertSQL: %@",insertSQL);
+                            const char *insert_stmt = [insertSQL UTF8String];
+                            sqlite3_prepare_v2(database, insert_stmt, -1, &statement, NULL);
+                            if(sqlite3_step(statement) == SQLITE_DONE){
+                                NSLog(@"Insert successful node");
+                            }else{
+                                NSLog(@"Insert failed");
+                            }
+                            sqlite3_finalize(statement); 
+                            
+                            //NSLog(@"Node added");
+                        }
+                        count ++;
+                    }
+                }
+                
+            }
+            
+            
+            
         }
+        
+        
+        
+        
         sqlite3_close(database);
         
     }else {
@@ -133,7 +150,7 @@
 	success = [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
 	if (!success) {
 		NSAssert1(0, @"Failed to create writable database file with message ‘%@’.", [error localizedDescription]);
-		NSLog(@"Failed to create writable database file with message ‘%@’.", [error localizedDescription]);
+		//NSLog(@"Failed to create writable database file with message ‘%@’.", [error localizedDescription]);
 	}
 }
 
