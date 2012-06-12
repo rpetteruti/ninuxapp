@@ -31,6 +31,9 @@
 - (void)viewDidLoad
 {   
    [super viewDidLoad];
+    
+    
+    
     NSLog(@"gesture recognized configured successfully");
     
     
@@ -177,7 +180,7 @@
 	{
 		// as we start the fade effect, start the timeout timer for automatically hiding HoverView
 		[self displayBar:YES];
-        hudView.hidden = NO;
+       
 		searchBar.alpha = 1.0;
         hudView.alpha=0.9;
 		controlsAreDisplayed=YES;
@@ -186,7 +189,7 @@
 	}
 	else
 	{   
-        hudView.hidden = YES;
+        
         [self displayBar:NO];
 		searchBar.alpha = 0.0;
         hudView.alpha=0.0;
@@ -351,7 +354,6 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    hudView.hidden=YES;
 }
 
 
