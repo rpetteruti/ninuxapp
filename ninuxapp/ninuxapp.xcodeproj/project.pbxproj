@@ -30,6 +30,8 @@
 		B519BED6155ECEB500B3EC92 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BEC8155ECEB500B3EC92 /* SBJsonTokeniser.m */; };
 		B519BED7155ECEB500B3EC92 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BECA155ECEB500B3EC92 /* SBJsonUTF8Stream.m */; };
 		B519BED8155ECEB500B3EC92 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BECC155ECEB500B3EC92 /* SBJsonWriter.m */; };
+		B541E5711587E5C700207BCB /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA3A1587E1DB0054C43F /* HUDView.xib */; };
+		B541E5731587E5CF00207BCB /* MapVisualizationOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA3D1587E20A0054C43F /* MapVisualizationOptionsViewController.xib */; };
 		B5C2212A155E9E4E0065E0CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C22129155E9E4E0065E0CD /* UIKit.framework */; };
 		B5C2212C155E9E4E0065E0CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C2212B155E9E4E0065E0CD /* Foundation.framework */; };
 		B5C2212E155E9E4E0065E0CD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C2212D155E9E4E0065E0CD /* CoreGraphics.framework */; };
@@ -339,8 +341,10 @@
 				42C0BA2E1587E1C30054C43F /* 73-radar.png in Resources */,
 				42C0BA2F1587E1C30054C43F /* 73-radar@2x.png in Resources */,
 				42C0BA301587E1C30054C43F /* 103-map.png in Resources */,
+				B541E5731587E5CF00207BCB /* MapVisualizationOptionsViewController.xib in Resources */,
 				42C0BA311587E1C30054C43F /* 103-map@2x.png in Resources */,
 				42C0BA321587E1C30054C43F /* dotted-pattern.png in Resources */,
+				B541E5711587E5C700207BCB /* HUDView.xib in Resources */,
 				42C0BA331587E1C30054C43F /* dotted-pattern@2x.png in Resources */,
 				42C0BA341587E1C30054C43F /* inner-shadow.png in Resources */,
 				42C0BA351587E1C30054C43F /* provahud.png in Resources */,
