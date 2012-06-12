@@ -61,8 +61,6 @@
 		42C0BA381587E1DB0054C43F /* HUDView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUDView.h; sourceTree = "<group>"; };
 		42C0BA391587E1DB0054C43F /* HUDView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HUDView.m; sourceTree = "<group>"; };
 		42C0BA3A1587E1DB0054C43F /* HUDView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUDView.xib; sourceTree = "<group>"; };
-		42C0BA3B1587E20A0054C43F /* MapVisualizationOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapVisualizationOptionsViewController.h; sourceTree = "<group>"; };
-		42C0BA3C1587E20A0054C43F /* MapVisualizationOptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapVisualizationOptionsViewController.m; sourceTree = "<group>"; };
 		42C0BA3D1587E20A0054C43F /* MapVisualizationOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapVisualizationOptionsViewController.xib; sourceTree = "<group>"; };
 		42C0BA3E1587E20A0054C43F /* UIView+Animation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Animation.h"; sourceTree = "<group>"; };
 		42C0BA3F1587E20A0054C43F /* UIView+Animation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
@@ -205,8 +203,6 @@
 				B5C22139155E9E4E0065E0CD /* AppDelegate.m */,
 				B5C2213B155E9E4E0065E0CD /* FirstViewController.h */,
 				B5C2213C155E9E4E0065E0CD /* FirstViewController.m */,
-				42C0BA3B1587E20A0054C43F /* MapVisualizationOptionsViewController.h */,
-				42C0BA3C1587E20A0054C43F /* MapVisualizationOptionsViewController.m */,
 				42C0BA3D1587E20A0054C43F /* MapVisualizationOptionsViewController.xib */,
 				42C0BA3E1587E20A0054C43F /* UIView+Animation.h */,
 				42C0BA3F1587E20A0054C43F /* UIView+Animation.m */,

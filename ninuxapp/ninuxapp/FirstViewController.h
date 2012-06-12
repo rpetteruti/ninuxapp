@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HUDView.h"
+#import "MapVisualizationOptionsViewController.h"
 
-@interface FirstViewController : UIViewController
+@interface FirstViewController : UIViewController <UIGestureRecognizerDelegate,HUDViewDelegate>{
+    
+    NSTimer *myTimer;
+    
+    UISearchDisplayController *displayController;
+    IBOutlet UISearchBar *searchBar;
+    IBOutlet UIView * view;
+    BOOL  controlsAreDisplayed;
+    HUDView *hudView;
+}
+
+
 
 @end
