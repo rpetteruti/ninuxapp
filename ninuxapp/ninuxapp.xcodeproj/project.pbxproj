@@ -17,7 +17,6 @@
 		42C0BA351587E1C30054C43F /* provahud.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA2C1587E1C30054C43F /* provahud.png */; };
 		42C0BA361587E1C30054C43F /* Schermata 06-2456086 alle 15.10.49.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA2D1587E1C30054C43F /* Schermata 06-2456086 alle 15.10.49.png */; };
 		42C0BA461587E3990054C43F /* MapVisualizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C0BA451587E3990054C43F /* MapVisualizationViewController.m */; };
-		42C0BA4C1587E51C0054C43F /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA4B1587E51C0054C43F /* FirstViewController.xib */; };
 		B519BECD155ECEB500B3EC92 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BEB5155ECEB500B3EC92 /* NSObject+SBJson.m */; };
 		B519BECE155ECEB500B3EC92 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BEB8155ECEB500B3EC92 /* SBJsonParser.m */; };
 		B519BECF155ECEB500B3EC92 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BEBA155ECEB500B3EC92 /* SBJsonStreamParser.m */; };
@@ -38,13 +37,10 @@
 		B5C22134155E9E4E0065E0CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5C22132155E9E4E0065E0CD /* InfoPlist.strings */; };
 		B5C22136155E9E4E0065E0CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C22135155E9E4E0065E0CD /* main.m */; };
 		B5C2213A155E9E4E0065E0CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C22139155E9E4E0065E0CD /* AppDelegate.m */; };
-		B5C2213D155E9E4E0065E0CD /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C2213C155E9E4E0065E0CD /* FirstViewController.m */; };
 		B5C2213F155E9E4E0065E0CD /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C2213E155E9E4E0065E0CD /* first.png */; };
 		B5C22141155E9E4E0065E0CD /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C22140155E9E4E0065E0CD /* first@2x.png */; };
-		B5C22144155E9E4E0065E0CD /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C22143155E9E4E0065E0CD /* SecondViewController.m */; };
 		B5C22146155E9E4E0065E0CD /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C22145155E9E4E0065E0CD /* second.png */; };
 		B5C22148155E9E4E0065E0CD /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C22147155E9E4E0065E0CD /* second@2x.png */; };
-		B5C2214E155E9E4E0065E0CD /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5C2214C155E9E4E0065E0CD /* SecondViewController.xib */; };
 		B5D225B215810AC700F1D7DC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D225B115810AC700F1D7DC /* libsqlite3.0.dylib */; };
 		B5D225B81581141800F1D7DC /* nodes.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B5D225B71581141800F1D7DC /* nodes.sqlite */; };
 		B5F92A351580DD0D0086B6A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F92A341580DD0D0086B6A0 /* MapKit.framework */; };
@@ -69,7 +65,6 @@
 		42C0BA3F1587E20A0054C43F /* UIView+Animation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
 		42C0BA441587E3990054C43F /* MapVisualizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVisualizationViewController.h; sourceTree = "<group>"; };
 		42C0BA451587E3990054C43F /* MapVisualizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVisualizationViewController.m; sourceTree = "<group>"; };
-		42C0BA4B1587E51C0054C43F /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 		B519BEB4155ECEB500B3EC92 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		B519BEB5155ECEB500B3EC92 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		B519BEB6155ECEB500B3EC92 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -105,15 +100,10 @@
 		B5C22137155E9E4E0065E0CD /* ninuxapp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ninuxapp-Prefix.pch"; sourceTree = "<group>"; };
 		B5C22138155E9E4E0065E0CD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B5C22139155E9E4E0065E0CD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B5C2213B155E9E4E0065E0CD /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		B5C2213C155E9E4E0065E0CD /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		B5C2213E155E9E4E0065E0CD /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		B5C22140155E9E4E0065E0CD /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		B5C22142155E9E4E0065E0CD /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		B5C22143155E9E4E0065E0CD /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		B5C22145155E9E4E0065E0CD /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		B5C22147155E9E4E0065E0CD /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		B5C2214D155E9E4E0065E0CD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
 		B5D225B115810AC700F1D7DC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		B5D225B71581141800F1D7DC /* nodes.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = nodes.sqlite; sourceTree = "<group>"; };
 		B5F92A341580DD0D0086B6A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -144,10 +134,6 @@
 				42C0BA481587E3FF0054C43F /* HUD */,
 				42C0BA441587E3990054C43F /* MapVisualizationViewController.h */,
 				42C0BA451587E3990054C43F /* MapVisualizationViewController.m */,
-				B5C2213B155E9E4E0065E0CD /* FirstViewController.h */,
-				B5C2213C155E9E4E0065E0CD /* FirstViewController.m */,
-				B5C22142155E9E4E0065E0CD /* SecondViewController.h */,
-				B5C22143155E9E4E0065E0CD /* SecondViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -165,8 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				42C0BA3D1587E20A0054C43F /* MapVisualizationOptionsViewController.xib */,
-				42C0BA4B1587E51C0054C43F /* FirstViewController.xib */,
-				B5C2214C155E9E4E0065E0CD /* SecondViewController.xib */,
 				42C0BA3A1587E1DB0054C43F /* HUDView.xib */,
 			);
 			name = UI;
@@ -336,7 +320,6 @@
 				B5C22141155E9E4E0065E0CD /* first@2x.png in Resources */,
 				B5C22146155E9E4E0065E0CD /* second.png in Resources */,
 				B5C22148155E9E4E0065E0CD /* second@2x.png in Resources */,
-				B5C2214E155E9E4E0065E0CD /* SecondViewController.xib in Resources */,
 				B5D225B81581141800F1D7DC /* nodes.sqlite in Resources */,
 				42C0BA2E1587E1C30054C43F /* 73-radar.png in Resources */,
 				42C0BA2F1587E1C30054C43F /* 73-radar@2x.png in Resources */,
@@ -349,7 +332,6 @@
 				42C0BA341587E1C30054C43F /* inner-shadow.png in Resources */,
 				42C0BA351587E1C30054C43F /* provahud.png in Resources */,
 				42C0BA361587E1C30054C43F /* Schermata 06-2456086 alle 15.10.49.png in Resources */,
-				42C0BA4C1587E51C0054C43F /* FirstViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,8 +344,6 @@
 			files = (
 				B5C22136155E9E4E0065E0CD /* main.m in Sources */,
 				B5C2213A155E9E4E0065E0CD /* AppDelegate.m in Sources */,
-				B5C2213D155E9E4E0065E0CD /* FirstViewController.m in Sources */,
-				B5C22144155E9E4E0065E0CD /* SecondViewController.m in Sources */,
 				B519BECD155ECEB500B3EC92 /* NSObject+SBJson.m in Sources */,
 				B519BECE155ECEB500B3EC92 /* SBJsonParser.m in Sources */,
 				B519BECF155ECEB500B3EC92 /* SBJsonStreamParser.m in Sources */,
@@ -389,14 +369,6 @@
 				B5C22133155E9E4E0065E0CD /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B5C2214C155E9E4E0065E0CD /* SecondViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5C2214D155E9E4E0065E0CD /* en */,
-			);
-			name = SecondViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
