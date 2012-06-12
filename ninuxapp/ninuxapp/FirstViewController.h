@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HUDView.h"
-#import "MapVisualizationOptionsViewController.h"
+#import "MapVisualizationViewController.h"
 
 @interface FirstViewController : UIViewController <UIGestureRecognizerDelegate,HUDViewDelegate>{
     

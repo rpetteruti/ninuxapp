@@ -67,7 +67,7 @@
     NSLog(@"Did press options button...");
     
     
-    MapVisualizationOptionsViewController *options = [[MapVisualizationOptionsViewController alloc] init];
+    MapVisualizationViewController *options = [[MapVisualizationViewController alloc] init];
     [options setModalTransitionStyle:UIModalTransitionStylePartialCurl];
     [self presentModalViewController:options animated:YES];
 }

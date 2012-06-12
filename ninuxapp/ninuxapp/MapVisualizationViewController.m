@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "MapVisualizationOptionsViewController.h"
+#import "MapVisualizationViewController.h"
 
-@interface MapVisualizationOptionsViewController ()
+@interface MapVisualizationViewController ()
 
 @end
 
-@implementation MapVisualizationOptionsViewController
+@implementation MapVisualizationViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
