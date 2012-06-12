@@ -118,7 +118,7 @@
 - (BOOL) gestureRecognizerShouldBegin: (UIGestureRecognizer *) gestureRecognizer
 {
     NSLog(@"GRShouldBegin launched");
-	CGRect area= UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? CGRectMake(78, 0, 610, 955): CGRectMake(114,0,796,699);
+	CGRect area=CGRectMake(78,373,165,38);
 	CGPoint location = [gestureRecognizer locationInView: self.view];
 	if(CGRectContainsPoint(area, location)){// i just want to catch touches in this area
 		
@@ -126,7 +126,7 @@
         
         if(controlsAreDisplayed){
             
-            CGRect f=hudView.frame;
+            CGRect f=self.view.frame;
             
             if(CGRectContainsPoint(f, location)) return YES;
             else return NO;
