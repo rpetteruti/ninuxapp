@@ -16,6 +16,7 @@
 		42C0BA341587E1C30054C43F /* inner-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA2B1587E1C30054C43F /* inner-shadow.png */; };
 		42C0BA351587E1C30054C43F /* provahud.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA2C1587E1C30054C43F /* provahud.png */; };
 		42C0BA361587E1C30054C43F /* Schermata 06-2456086 alle 15.10.49.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA2D1587E1C30054C43F /* Schermata 06-2456086 alle 15.10.49.png */; };
+		42C0BA461587E3990054C43F /* MapVisualizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C0BA451587E3990054C43F /* MapVisualizationViewController.m */; };
 		B519BECD155ECEB500B3EC92 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BEB5155ECEB500B3EC92 /* NSObject+SBJson.m */; };
 		B519BECE155ECEB500B3EC92 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BEB8155ECEB500B3EC92 /* SBJsonParser.m */; };
 		B519BECF155ECEB500B3EC92 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BEBA155ECEB500B3EC92 /* SBJsonStreamParser.m */; };
@@ -64,6 +65,8 @@
 		42C0BA3D1587E20A0054C43F /* MapVisualizationOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapVisualizationOptionsViewController.xib; sourceTree = "<group>"; };
 		42C0BA3E1587E20A0054C43F /* UIView+Animation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Animation.h"; sourceTree = "<group>"; };
 		42C0BA3F1587E20A0054C43F /* UIView+Animation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
+		42C0BA441587E3990054C43F /* MapVisualizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVisualizationViewController.h; sourceTree = "<group>"; };
+		42C0BA451587E3990054C43F /* MapVisualizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVisualizationViewController.m; sourceTree = "<group>"; };
 		B519BEB4155ECEB500B3EC92 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		B519BEB5155ECEB500B3EC92 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		B519BEB6155ECEB500B3EC92 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -199,6 +202,8 @@
 		B5C2212F155E9E4E0065E0CD /* ninuxapp */ = {
 			isa = PBXGroup;
 			children = (
+				42C0BA441587E3990054C43F /* MapVisualizationViewController.h */,
+				42C0BA451587E3990054C43F /* MapVisualizationViewController.m */,
 				B5C22138155E9E4E0065E0CD /* AppDelegate.h */,
 				B5C22139155E9E4E0065E0CD /* AppDelegate.m */,
 				B5C2213B155E9E4E0065E0CD /* FirstViewController.h */,
@@ -335,6 +340,7 @@
 				B519BED6155ECEB500B3EC92 /* SBJsonTokeniser.m in Sources */,
 				B519BED7155ECEB500B3EC92 /* SBJsonUTF8Stream.m in Sources */,
 				B519BED8155ECEB500B3EC92 /* SBJsonWriter.m in Sources */,
+				42C0BA461587E3990054C43F /* MapVisualizationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
