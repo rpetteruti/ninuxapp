@@ -135,6 +135,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42C0BA471587E3EC0054C43F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				42C0BA491587E40A0054C43F /* UI */,
+				42C0BA481587E3FF0054C43F /* HUD */,
+				42C0BA441587E3990054C43F /* MapVisualizationViewController.h */,
+				42C0BA451587E3990054C43F /* MapVisualizationViewController.m */,
+				B5C2213B155E9E4E0065E0CD /* FirstViewController.h */,
+				B5C2213C155E9E4E0065E0CD /* FirstViewController.m */,
+				B5C22142155E9E4E0065E0CD /* SecondViewController.h */,
+				B5C22143155E9E4E0065E0CD /* SecondViewController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		42C0BA481587E3FF0054C43F /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				42C0BA381587E1DB0054C43F /* HUDView.h */,
+				42C0BA391587E1DB0054C43F /* HUDView.m */,
+			);
+			name = HUD;
+			sourceTree = "<group>";
+		};
+		42C0BA491587E40A0054C43F /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				42C0BA3D1587E20A0054C43F /* MapVisualizationOptionsViewController.xib */,
+				B5C22149155E9E4E0065E0CD /* FirstViewController.xib */,
+				B5C2214C155E9E4E0065E0CD /* SecondViewController.xib */,
+				42C0BA3A1587E1DB0054C43F /* HUDView.xib */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		42C0BA4A1587E4400054C43F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B5C2213E155E9E4E0065E0CD /* first.png */,
+				B5C22140155E9E4E0065E0CD /* first@2x.png */,
+				42C0BA251587E1C30054C43F /* 73-radar.png */,
+				42C0BA261587E1C30054C43F /* 73-radar@2x.png */,
+				42C0BA271587E1C30054C43F /* 103-map.png */,
+				42C0BA281587E1C30054C43F /* 103-map@2x.png */,
+				42C0BA291587E1C30054C43F /* dotted-pattern.png */,
+				42C0BA2A1587E1C30054C43F /* dotted-pattern@2x.png */,
+				42C0BA2B1587E1C30054C43F /* inner-shadow.png */,
+				42C0BA2C1587E1C30054C43F /* provahud.png */,
+				42C0BA2D1587E1C30054C43F /* Schermata 06-2456086 alle 15.10.49.png */,
+				B5C22145155E9E4E0065E0CD /* second.png */,
+				B5C22147155E9E4E0065E0CD /* second@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		B519BEB3155ECEB500B3EC92 /* SBJson */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,35 +257,11 @@
 		B5C2212F155E9E4E0065E0CD /* ninuxapp */ = {
 			isa = PBXGroup;
 			children = (
-				42C0BA441587E3990054C43F /* MapVisualizationViewController.h */,
-				42C0BA451587E3990054C43F /* MapVisualizationViewController.m */,
 				B5C22138155E9E4E0065E0CD /* AppDelegate.h */,
 				B5C22139155E9E4E0065E0CD /* AppDelegate.m */,
-				B5C2213B155E9E4E0065E0CD /* FirstViewController.h */,
-				B5C2213C155E9E4E0065E0CD /* FirstViewController.m */,
-				42C0BA3D1587E20A0054C43F /* MapVisualizationOptionsViewController.xib */,
 				42C0BA3E1587E20A0054C43F /* UIView+Animation.h */,
 				42C0BA3F1587E20A0054C43F /* UIView+Animation.m */,
-				B5C2213E155E9E4E0065E0CD /* first.png */,
-				B5C22140155E9E4E0065E0CD /* first@2x.png */,
-				B5C22142155E9E4E0065E0CD /* SecondViewController.h */,
-				42C0BA381587E1DB0054C43F /* HUDView.h */,
-				42C0BA391587E1DB0054C43F /* HUDView.m */,
-				42C0BA3A1587E1DB0054C43F /* HUDView.xib */,
-				B5C22143155E9E4E0065E0CD /* SecondViewController.m */,
-				42C0BA251587E1C30054C43F /* 73-radar.png */,
-				42C0BA261587E1C30054C43F /* 73-radar@2x.png */,
-				42C0BA271587E1C30054C43F /* 103-map.png */,
-				42C0BA281587E1C30054C43F /* 103-map@2x.png */,
-				42C0BA291587E1C30054C43F /* dotted-pattern.png */,
-				42C0BA2A1587E1C30054C43F /* dotted-pattern@2x.png */,
-				42C0BA2B1587E1C30054C43F /* inner-shadow.png */,
-				42C0BA2C1587E1C30054C43F /* provahud.png */,
-				42C0BA2D1587E1C30054C43F /* Schermata 06-2456086 alle 15.10.49.png */,
-				B5C22145155E9E4E0065E0CD /* second.png */,
-				B5C22147155E9E4E0065E0CD /* second@2x.png */,
-				B5C22149155E9E4E0065E0CD /* FirstViewController.xib */,
-				B5C2214C155E9E4E0065E0CD /* SecondViewController.xib */,
+				42C0BA471587E3EC0054C43F /* Classes */,
 				B5C22130155E9E4E0065E0CD /* Supporting Files */,
 			);
 			path = ninuxapp;
@@ -239,6 +270,7 @@
 		B5C22130155E9E4E0065E0CD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				42C0BA4A1587E4400054C43F /* Images */,
 				B5C22131155E9E4E0065E0CD /* ninuxapp-Info.plist */,
 				B5C22132155E9E4E0065E0CD /* InfoPlist.strings */,
 				B5C22135155E9E4E0065E0CD /* main.m */,
