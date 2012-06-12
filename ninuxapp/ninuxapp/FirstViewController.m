@@ -30,7 +30,7 @@
 
 - (void)viewDidLoad
 {   
-   
+   [super viewDidLoad];
     NSLog(@"gesture recognized configured successfully");
     
     
@@ -57,7 +57,7 @@
     
     
     
-    [super viewDidLoad];
+    
 	// Do any additional setup after loading the view, typically from a nib.
     
     [self performSelector:@selector(configureGestures) withObject:nil afterDelay:1];
@@ -68,9 +68,7 @@
     touchRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(displayBar:)];
     
     touchRecognizer.delegate=self;
-    [self.view addGestureRecognizer:touchRecognizer];
-    
-    
+    [self.view addGestureRecognizer:touchRecognizer]; 
     
 }
 
@@ -179,6 +177,7 @@
 	{
 		// as we start the fade effect, start the timeout timer for automatically hiding HoverView
 		[self displayBar:YES];
+        hudView.hidden = NO;
 		searchBar.alpha = 1.0;
         hudView.alpha=0.9;
 		controlsAreDisplayed=YES;
@@ -186,10 +185,13 @@
 		[[NSRunLoop currentRunLoop] addTimer:myTimer forMode:NSDefaultRunLoopMode];
 	}
 	else
-	{   [self displayBar:NO];
+	{   
+        hudView.hidden = YES;
+        [self displayBar:NO];
 		searchBar.alpha = 0.0;
         hudView.alpha=0.0;
 		controlsAreDisplayed=NO;
+     
 	}
 	
 	[UIView commitAnimations];
@@ -347,6 +349,10 @@
 }
 
 
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    hudView.hidden=YES;
+}
 
 
 @end
