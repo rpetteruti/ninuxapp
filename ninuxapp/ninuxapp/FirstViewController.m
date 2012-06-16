@@ -268,7 +268,7 @@
                             NSAssert1(0, @"Error: failed to prepare statement with message ‘%s’.", sqlite3_errmsg(database));
                         }else {
                             sqlite3_stmt *statement;
-                            NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO nodes (name,lat,lng,type) VALUES(\"%@\",\"%@\",\"%@\",\"%@\")",[node objectForKey:@"name"],[node objectForKey:@"lat"],[node objectForKey:@"lng"],[node objectForKey:@"status"]];
+                            NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO nodes (name,lat,lng,type) VALUES(\"%@\",\"%@\",\"%@\",\"%@\")",[node objectForKey:@"name"],[node objectForKey:@"lat"],[node objectForKey:@"lng"],type];
                             NSLog(@"insertSQL: %@",insertSQL);
                             const char *insert_stmt = [insertSQL UTF8String];
                             sqlite3_prepare_v2(database, insert_stmt, -1, &statement, NULL);
@@ -337,8 +337,10 @@
                 annotationCoord.latitude = [[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)]doubleValue];
                 annotationCoord.longitude = [[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 2)]doubleValue];
                 
-                MKPointAnnotation *annotationPoint;
-                annotationPoint = [[MKPointAnnotation alloc] init];
+                
+                customPin *annotationPoint = [[customPin alloc] init];
+                annotationPoint.type = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 3)] ;
+                
                 annotationPoint.coordinate = annotationCoord;
                 annotationPoint.title = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 0)];
                 annotationPoint.subtitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
@@ -352,9 +354,42 @@
 }
 
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
-{
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    
+    
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"SFAnnotationIdentifier"];
+    if(!annotationView) {   
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"SFAnnotationIdentifier"];
+        annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        
+        customPin *tappedPin = annotation;
+        NSLog(@"Type: %@",tappedPin.type);
+        UIImage *pinImage = [UIImage imageNamed:@"RedMapPin.png"];
+        
+        
+        if ([tappedPin.type isEqualToString:@"active"]) {
+            pinImage=[UIImage imageNamed:@"marker_active.png"];
+        }else if ([tappedPin.type isEqualToString:@"potential"]) {
+            pinImage=[UIImage imageNamed:@"marker_potential.png"];
+        }else if ([tappedPin.type isEqualToString:@"hotspot"]) {
+            pinImage=[UIImage imageNamed:@"marker_hotspot.png"];
+        }
+       
+        annotationView.image = pinImage;
+    }else {
+        annotationView.annotation = annotation;
+    }
+    
+    annotationView.enabled = YES;
+    annotationView.canShowCallout = YES;
+    
+    
+    
+    return annotationView;
 }
 
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    NSLog(@"Click on disclosure button in the pin");
+}
 
 @end

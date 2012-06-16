@@ -12,6 +12,7 @@
 #import <MapKit/MapKit.h>
 #import <sqlite3.h>
 #import "SBJson.h"
+#import "customPin.h"
 
 #define pathDB @"nodes.sqlite"
 

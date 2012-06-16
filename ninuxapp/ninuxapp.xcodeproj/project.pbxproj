@@ -35,6 +35,11 @@
 		B519BED8155ECEB500B3EC92 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BECC155ECEB500B3EC92 /* SBJsonWriter.m */; };
 		B541E5711587E5C700207BCB /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA3A1587E1DB0054C43F /* HUDView.xib */; };
 		B541E5731587E5CF00207BCB /* MapVisualizationOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA3D1587E20A0054C43F /* MapVisualizationOptionsViewController.xib */; };
+		B5B8AB0A158CFEB300402E06 /* customPin.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B8AB09158CFEB300402E06 /* customPin.m */; };
+		B5B8AB0E158D002700402E06 /* RedMapPin.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B8AB0D158D002700402E06 /* RedMapPin.png */; };
+		B5B8AB10158D036000402E06 /* marker_active.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B8AB0F158D036000402E06 /* marker_active.png */; };
+		B5B8AB12158D05E500402E06 /* marker_potential.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B8AB11158D05E500402E06 /* marker_potential.png */; };
+		B5B8AB14158D060E00402E06 /* marker_hotspot.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B8AB13158D060E00402E06 /* marker_hotspot.png */; };
 		B5C2212A155E9E4E0065E0CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C22129155E9E4E0065E0CD /* UIKit.framework */; };
 		B5C2212C155E9E4E0065E0CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C2212B155E9E4E0065E0CD /* Foundation.framework */; };
 		B5C2212E155E9E4E0065E0CD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C2212D155E9E4E0065E0CD /* CoreGraphics.framework */; };
@@ -100,6 +105,12 @@
 		B519BECA155ECEB500B3EC92 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		B519BECB155ECEB500B3EC92 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		B519BECC155ECEB500B3EC92 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		B5B8AB08158CFEB300402E06 /* customPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customPin.h; sourceTree = "<group>"; };
+		B5B8AB09158CFEB300402E06 /* customPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customPin.m; sourceTree = "<group>"; };
+		B5B8AB0D158D002700402E06 /* RedMapPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedMapPin.png; sourceTree = "<group>"; };
+		B5B8AB0F158D036000402E06 /* marker_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_active.png; sourceTree = "<group>"; };
+		B5B8AB11158D05E500402E06 /* marker_potential.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_potential.png; sourceTree = "<group>"; };
+		B5B8AB13158D060E00402E06 /* marker_hotspot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_hotspot.png; sourceTree = "<group>"; };
 		B5C22125155E9E4E0065E0CD /* ninuxapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ninuxapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C22129155E9E4E0065E0CD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5C2212B155E9E4E0065E0CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -140,6 +151,8 @@
 		42C0BA471587E3EC0054C43F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B5B8AB08158CFEB300402E06 /* customPin.h */,
+				B5B8AB09158CFEB300402E06 /* customPin.m */,
 				42C0BA571587EFE30054C43F /* FirstViewController.h */,
 				42C0BA581587EFE30054C43F /* FirstViewController.m */,
 				42C0BA5A1587EFE30054C43F /* SecondViewController.h */,
@@ -175,6 +188,7 @@
 		42C0BA4A1587E4400054C43F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B5B8AB0C158D001300402E06 /* map */,
 				B5C2213E155E9E4E0065E0CD /* first.png */,
 				B5C22140155E9E4E0065E0CD /* first@2x.png */,
 				42C0BA251587E1C30054C43F /* 73-radar.png */,
@@ -222,6 +236,17 @@
 				B519BECC155ECEB500B3EC92 /* SBJsonWriter.m */,
 			);
 			path = SBJson;
+			sourceTree = "<group>";
+		};
+		B5B8AB0C158D001300402E06 /* map */ = {
+			isa = PBXGroup;
+			children = (
+				B5B8AB0D158D002700402E06 /* RedMapPin.png */,
+				B5B8AB0F158D036000402E06 /* marker_active.png */,
+				B5B8AB11158D05E500402E06 /* marker_potential.png */,
+				B5B8AB13158D060E00402E06 /* marker_hotspot.png */,
+			);
+			name = map;
 			sourceTree = "<group>";
 		};
 		B5C2211A155E9E4E0065E0CD = {
@@ -350,6 +375,10 @@
 				42C0BA361587E1C30054C43F /* Schermata 06-2456086 alle 15.10.49.png in Resources */,
 				42C0BA5E1587EFE30054C43F /* FirstViewController.xib in Resources */,
 				42C0BA601587EFE30054C43F /* SecondViewController.xib in Resources */,
+				B5B8AB0E158D002700402E06 /* RedMapPin.png in Resources */,
+				B5B8AB10158D036000402E06 /* marker_active.png in Resources */,
+				B5B8AB12158D05E500402E06 /* marker_potential.png in Resources */,
+				B5B8AB14158D060E00402E06 /* marker_hotspot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +406,7 @@
 				42C0BA461587E3990054C43F /* MapVisualizationViewController.m in Sources */,
 				42C0BA5D1587EFE30054C43F /* FirstViewController.m in Sources */,
 				42C0BA5F1587EFE30054C43F /* SecondViewController.m in Sources */,
+				B5B8AB0A158CFEB300402E06 /* customPin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
