@@ -41,9 +41,9 @@
 	NSString *documentsDirectory = [paths objectAtIndex:0];
     writableDBPath = [documentsDirectory stringByAppendingPathComponent:pathDB];
     NSLog(@"Start populating map...");
-    [map setCenterCoordinate:CLLocationCoordinate2DMake(41.8934, 12.4960)];
+    [self zoomOnCoord:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:0.2];
     //[map setCenterCoordinate:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:13 animated:YES];
-	[self performSelectorInBackground:@selector(populateMap) withObject:nil];
+	[self performSelectorInBackground:@selector(populateMapFromDB) withObject:nil];//TODO ora carica da db, dopo bisognerà chiamare populateMap
     NSArray *nibviews=[[NSBundle mainBundle] loadNibNamed:@"HUDView" owner:self options:nil];
     
     hudView =  (HUDView *) [nibviews objectAtIndex:0];
@@ -53,14 +53,6 @@
     searchBar.alpha=0.0;
     hudView.alpha=0.0;
 
-
-
-    
-    
-    
-    
-    
-    
 	// Do any additional setup after loading the view, typically from a nib.
     
     [self performSelector:@selector(configureGestures) withObject:nil afterDelay:1];
@@ -346,12 +338,13 @@
                 annotationPoint.subtitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
                 
                 [map addAnnotation:annotationPoint];
-                NSLog(@"added");
+                //NSLog(@"added");
                 
             }
         }
-    } 
-}
+    }
+    [self performSelectorOnMainThread:@selector(reloadMap) withObject:nil waitUntilDone:FALSE];
+    }
 
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
@@ -390,6 +383,31 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     NSLog(@"Click on disclosure button in the pin");
+}
+
+-(void) zoomOnCoord:(CLLocationCoordinate2D)annotationCoord zoomLevel:(float) zoomLevel{
+    
+    NSLog(@"ZoomLevel: %f",zoomLevel);
+    if (zoomLevel<0.1)zoomLevel = zoomLevel+0.03;//evito di zoomare troppo
+    
+    
+    MKCoordinateSpan span;
+    span.latitudeDelta=zoomLevel;
+    span.longitudeDelta=zoomLevel;
+    
+    MKCoordinateRegion region;
+    region.span=span;
+    region.center=annotationCoord;
+    
+    
+    
+    [map setRegion:region animated:TRUE];
+    [map regionThatFits:region];
+}
+
+-(void) reloadMap
+{
+    [map setRegion:map.region animated:TRUE];
 }
 
 @end
