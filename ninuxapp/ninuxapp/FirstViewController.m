@@ -30,7 +30,7 @@
 
 - (void)viewDidLoad
 {   
-   [super viewDidLoad];
+    [super viewDidLoad];
     
     
     
@@ -52,7 +52,7 @@
     
     searchBar.alpha=0.0;
     hudView.alpha=0.0;
-
+    
 	// Do any additional setup after loading the view, typically from a nib.
     
     [self performSelector:@selector(configureGestures) withObject:nil afterDelay:1];
@@ -71,7 +71,7 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {   
     
     if (otherGestureRecognizer == touchRecognizer){
-     
+        
         NSLog(@"SECOND GR = CUSTOM GR");
         
         return NO;
@@ -172,7 +172,7 @@
 	{
 		// as we start the fade effect, start the timeout timer for automatically hiding HoverView
 		[self displayBar:YES];
-       
+        
 		searchBar.alpha = 1.0;
         hudView.alpha=0.9;
 		controlsAreDisplayed=YES;
@@ -186,7 +186,7 @@
 		searchBar.alpha = 0.0;
         hudView.alpha=0.0;
 		controlsAreDisplayed=NO;
-     
+        
 	}
 	
 	[UIView commitAnimations];
@@ -344,7 +344,7 @@
         }
     }
     [self performSelectorOnMainThread:@selector(reloadMap) withObject:nil waitUntilDone:FALSE];
-    }
+}
 
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
@@ -367,7 +367,7 @@
         }else if ([tappedPin.type isEqualToString:@"hotspot"]) {
             pinImage=[UIImage imageNamed:@"marker_hotspot.png"];
         }
-       
+        
         annotationView.image = pinImage;
     }else {
         annotationView.annotation = annotation;

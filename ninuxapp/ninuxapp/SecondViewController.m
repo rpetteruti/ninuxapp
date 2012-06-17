@@ -52,6 +52,38 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(searchNodes:)     object:searchText];
+    
+    NSLog(@"Search bar:%@",searchText);
+    
+    [self performSelector:@selector(searchNodes:) withObject:searchText afterDelay:1.5];
+}
+
+-(void)searchNodes:(NSString *)searchText{
+    sqlite3_stmt *selectstmt;
+	//const char *sql = "select name from nodes";
+    NSString *sqlSearch = [NSString stringWithFormat:@"SELECT name FROM nodes WHERE name LIKE '%%%@%%'",searchText];
+    NSLog(@"Search query:%@",sqlSearch);
+    const char *sql = [sqlSearch UTF8String];
+    if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
+        
+		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {   
+			
+			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
+                
+         
+                NSString *nodeName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 0)] ;
+             
+                NSLog(@"Node found:%@",nodeName);
+                
+            }
+        }
+    }
+    
+}
+
 
 
 

@@ -13,9 +13,8 @@
 #import <sqlite3.h>
 
 
-
 @interface SecondViewController : UIViewController{
-    
+    sqlite3 *database;
     IBOutlet MKMapView *map;
     NSString *writableDBPath;
     
