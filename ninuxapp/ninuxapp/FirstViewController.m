@@ -22,7 +22,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"First", @"First");
+        self.title = NSLocalizedString(@"Mappa", @"Mappa");
         self.tabBarItem.image = [UIImage imageNamed:@"first"];
     }
     return self;
@@ -318,6 +318,7 @@
     sqlite3_stmt *selectstmt;
 	const char *sql = "select name,lat,lng,type from nodes";
     NSLog(@"writable path:%@",writableDBPath);
+    int nodeCount=0;
     if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
         
 		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {   
@@ -333,6 +334,11 @@
                 customPin *annotationPoint = [[customPin alloc] init];
                 annotationPoint.type = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 3)] ;
                 
+                if ([annotationPoint.type isEqualToString:@"active"]) {
+                    nodeCount++;
+                }
+               
+                     
                 annotationPoint.coordinate = annotationCoord;
                 annotationPoint.title = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 0)];
                 annotationPoint.subtitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
@@ -343,6 +349,7 @@
             }
         }
     }
+    NSLog(@"nodi totali %i",nodeCount);
     [self performSelectorOnMainThread:@selector(reloadMap) withObject:nil waitUntilDone:FALSE];
 }
 
