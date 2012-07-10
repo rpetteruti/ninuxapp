@@ -43,7 +43,7 @@
     NSLog(@"Start populating map...");
     [self zoomOnCoord:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:0.2];
     //[map setCenterCoordinate:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:13 animated:YES];
-	[self performSelectorInBackground:@selector(populateMapFromDB) withObject:nil];//TODO ora carica da db, dopo bisognerà chiamare populateMap
+	[self performSelectorInBackground:@selector(populateMap) withObject:nil];//TODO ora carica da db, dopo bisognerà chiamare populateMap
     NSArray *nibviews=[[NSBundle mainBundle] loadNibNamed:@"HUDView" owner:self options:nil];
     
     hudView =  (HUDView *) [nibviews objectAtIndex:0];
@@ -235,7 +235,7 @@
                 NSLog(@"Delete successful nodes");
             }else{
                 NSLog(@"Delete failed");
-                NSAssert1(0, @"Error while deleting. '%s'", sqlite3_errmsg(database));
+                //NSAssert1(0, @"Error while deleting. '%s'", sqlite3_errmsg(database));
             }
             sqlite3_finalize(statement); 
             
