@@ -57,6 +57,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		429854C015B852280055D2F4 /* MapNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapNode.h; sourceTree = "<group>"; };
+		429854C115B852280055D2F4 /* MapNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapNode.m; sourceTree = "<group>"; };
+		429854C315B8523C0055D2F4 /* SearchResultsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResultsCell.h; sourceTree = "<group>"; };
+		429854C415B8523C0055D2F4 /* SearchResultsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchResultsCell.m; sourceTree = "<group>"; };
+		429854C515B8523C0055D2F4 /* SearchResultsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultsCell.xib; sourceTree = "<group>"; };
 		42C0BA251587E1C30054C43F /* 73-radar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "73-radar.png"; sourceTree = "<group>"; };
 		42C0BA261587E1C30054C43F /* 73-radar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "73-radar@2x.png"; sourceTree = "<group>"; };
 		42C0BA271587E1C30054C43F /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
@@ -153,6 +158,8 @@
 			children = (
 				B5B8AB08158CFEB300402E06 /* customPin.h */,
 				B5B8AB09158CFEB300402E06 /* customPin.m */,
+				429854C015B852280055D2F4 /* MapNode.h */,
+				429854C115B852280055D2F4 /* MapNode.m */,
 				42C0BA571587EFE30054C43F /* FirstViewController.h */,
 				42C0BA581587EFE30054C43F /* FirstViewController.m */,
 				42C0BA5A1587EFE30054C43F /* SecondViewController.h */,
@@ -181,6 +188,9 @@
 				42C0BA5C1587EFE30054C43F /* SecondViewController.xib */,
 				42C0BA3D1587E20A0054C43F /* MapVisualizationOptionsViewController.xib */,
 				42C0BA3A1587E1DB0054C43F /* HUDView.xib */,
+				429854C315B8523C0055D2F4 /* SearchResultsCell.h */,
+				429854C415B8523C0055D2F4 /* SearchResultsCell.m */,
+				429854C515B8523C0055D2F4 /* SearchResultsCell.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
