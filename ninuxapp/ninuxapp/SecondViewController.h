@@ -25,6 +25,7 @@
     NSMutableArray *resultsArray;
     SearchResultsCell *tmpCell;
     MKPolyline *polyline;
+    CLLocationCoordinate2D *linksArray;
     
 }
 

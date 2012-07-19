@@ -242,7 +242,7 @@
             //now we re-populate the database with new values from json file
             
             for (NSString *type in types) {
-                NSLog(@"tipo: %@",type);
+                NSLog(@"TIPO DI TIPO: %@",type);
                 if(![type isEqualToString:@"links"]){
                     NSDictionary *nodes = [items valueForKeyPath:type];
                     NSArray *keys = [nodes allKeys];
@@ -276,16 +276,47 @@
                         count ++;
                     }
                 }
+                else if([type isEqualToString:@"links"]){
+                  
+                    NSArray *links = [items valueForKeyPath:type];
+                    NSLog(@"TEST: %@ %i",[links objectAtIndex:0],[links count]);
+                    // NSDictionary *link=[links objectAtIndex:0];
+                    // NSLog(@"TEST 2: %@",[[links objectAtIndex:0] objectForKey:@"etx"]);
+                    //NSArray *keys = [links allKeys];
+                    //NSLog(@"TEST 3: %@",[link objectForKey:@"etx"]);
+                    for (NSDictionary *link in links) {
+                        // NSDictionary *link = [links objectForKey:key];
+                        NSLog(@"link to_lat: %@\n",[link objectForKey:@"to_lat"]);
+                        NSLog(@"Node dbm: %@\n",[link objectForKey:@"dbm"]);
+                        
+                        const char *sql_ins = "";
+                        
+                        sqlite3_stmt *insert_statement;
+                        if (sqlite3_prepare_v2(database, sql_ins, -1, &insert_statement, NULL) != SQLITE_OK)
+                        {
+                            NSAssert1(0, @"Error: failed to prepare statement with message ‘%s’.", sqlite3_errmsg(database));
+                        }else {
+                            sqlite3_stmt *statement;
+                            NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO links (to_lat,from_lng,from_lat,to_lng,etx) VALUES(\"%@\",\"%@\",\"%@\",\"%@\",\"%@\")",[link objectForKey:@"to_lat"],[link objectForKey:@"from_lng"],[link objectForKey:@"from_lat"],[link objectForKey:@"to_lng"],[link objectForKey:@"etx"]];
+                            NSLog(@"insertSQL: %@",insertSQL);
+                            const char *insert_stmt = [insertSQL UTF8String];
+                            sqlite3_prepare_v2(database, insert_stmt, -1, &statement, NULL);
+                            if(sqlite3_step(statement) == SQLITE_DONE){
+                                NSLog(@"Insert successful link");
+                            }else{
+                                NSLog(@"Insert link failed");
+                            }
+                            sqlite3_finalize(statement); 
+                            
+                        }
+                        count ++;
+                    }
+                }
+
                 
             }
             
-            
-            
         }
-        
-        
-        
-        
         sqlite3_close(database);
         
     }else {
@@ -363,7 +394,7 @@
         annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         
         customPin *tappedPin = annotation;
-        NSLog(@"Type: %@",tappedPin.associatedNode.type);
+        //NSLog(@"Type: %@",tappedPin.associatedNode.type);
         UIImage *pinImage = [UIImage imageNamed:@"RedMapPin.png"];
         
         

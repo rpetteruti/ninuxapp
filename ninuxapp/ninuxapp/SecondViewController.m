@@ -255,6 +255,8 @@
     [self.searchDisplayController.searchResultsTableView reloadData];
 }
 
+
+
 -(void)populateMapFromDB{
     sqlite3_stmt *selectstmt;
 	const char *sql = "select name,lat,lng,type from nodes";
