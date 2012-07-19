@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		429854C715B853E30055D2F4 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 429854C615B853E30055D2F4 /* SecondViewController.xib */; };
+		429854CA15B856720055D2F4 /* MapNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 429854C915B856720055D2F4 /* MapNode.m */; };
 		42C0BA2E1587E1C30054C43F /* 73-radar.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA251587E1C30054C43F /* 73-radar.png */; };
 		42C0BA2F1587E1C30054C43F /* 73-radar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA261587E1C30054C43F /* 73-radar@2x.png */; };
 		42C0BA301587E1C30054C43F /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA271587E1C30054C43F /* 103-map.png */; };
@@ -21,6 +22,9 @@
 		42C0BA5D1587EFE30054C43F /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C0BA581587EFE30054C43F /* FirstViewController.m */; };
 		42C0BA5E1587EFE30054C43F /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA591587EFE30054C43F /* FirstViewController.xib */; };
 		42C0BA5F1587EFE30054C43F /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C0BA5B1587EFE30054C43F /* SecondViewController.m */; };
+		42D3711F15B85DED00D7F4E3 /* mybackground@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42D3711E15B85DED00D7F4E3 /* mybackground@2x.jpg */; };
+		42D3712F15B86C6700D7F4E3 /* SearchResultsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D3712D15B86C6700D7F4E3 /* SearchResultsCell.m */; };
+		42D3713015B86C6700D7F4E3 /* SearchResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42D3712E15B86C6700D7F4E3 /* SearchResultsCell.xib */; };
 		B519BECD155ECEB500B3EC92 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BEB5155ECEB500B3EC92 /* NSObject+SBJson.m */; };
 		B519BECE155ECEB500B3EC92 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BEB8155ECEB500B3EC92 /* SBJsonParser.m */; };
 		B519BECF155ECEB500B3EC92 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BEBA155ECEB500B3EC92 /* SBJsonStreamParser.m */; };
@@ -57,12 +61,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		429854C015B852280055D2F4 /* MapNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapNode.h; sourceTree = "<group>"; };
-		429854C115B852280055D2F4 /* MapNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapNode.m; sourceTree = "<group>"; };
-		429854C315B8523C0055D2F4 /* SearchResultsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResultsCell.h; sourceTree = "<group>"; };
-		429854C415B8523C0055D2F4 /* SearchResultsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchResultsCell.m; sourceTree = "<group>"; };
-		429854C515B8523C0055D2F4 /* SearchResultsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultsCell.xib; sourceTree = "<group>"; };
 		429854C615B853E30055D2F4 /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
+		429854C815B856710055D2F4 /* MapNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNode.h; sourceTree = "<group>"; };
+		429854C915B856720055D2F4 /* MapNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapNode.m; sourceTree = "<group>"; };
 		42C0BA251587E1C30054C43F /* 73-radar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "73-radar.png"; sourceTree = "<group>"; };
 		42C0BA261587E1C30054C43F /* 73-radar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "73-radar@2x.png"; sourceTree = "<group>"; };
 		42C0BA271587E1C30054C43F /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
@@ -85,6 +86,10 @@
 		42C0BA591587EFE30054C43F /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 		42C0BA5A1587EFE30054C43F /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		42C0BA5B1587EFE30054C43F /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		42D3711E15B85DED00D7F4E3 /* mybackground@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "mybackground@2x.jpg"; sourceTree = "<group>"; };
+		42D3712C15B86C6700D7F4E3 /* SearchResultsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsCell.h; sourceTree = "<group>"; };
+		42D3712D15B86C6700D7F4E3 /* SearchResultsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsCell.m; sourceTree = "<group>"; };
+		42D3712E15B86C6700D7F4E3 /* SearchResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsCell.xib; sourceTree = "<group>"; };
 		B519BEB4155ECEB500B3EC92 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		B519BEB5155ECEB500B3EC92 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		B519BEB6155ECEB500B3EC92 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -158,8 +163,6 @@
 			children = (
 				B5B8AB08158CFEB300402E06 /* customPin.h */,
 				B5B8AB09158CFEB300402E06 /* customPin.m */,
-				429854C015B852280055D2F4 /* MapNode.h */,
-				429854C115B852280055D2F4 /* MapNode.m */,
 				42C0BA571587EFE30054C43F /* FirstViewController.h */,
 				42C0BA581587EFE30054C43F /* FirstViewController.m */,
 				42C0BA5A1587EFE30054C43F /* SecondViewController.h */,
@@ -168,6 +171,8 @@
 				42C0BA481587E3FF0054C43F /* HUD */,
 				42C0BA441587E3990054C43F /* MapVisualizationViewController.h */,
 				42C0BA451587E3990054C43F /* MapVisualizationViewController.m */,
+				429854C815B856710055D2F4 /* MapNode.h */,
+				429854C915B856720055D2F4 /* MapNode.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -184,13 +189,13 @@
 		42C0BA491587E40A0054C43F /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				42D3712C15B86C6700D7F4E3 /* SearchResultsCell.h */,
+				42D3712D15B86C6700D7F4E3 /* SearchResultsCell.m */,
+				42D3712E15B86C6700D7F4E3 /* SearchResultsCell.xib */,
 				42C0BA591587EFE30054C43F /* FirstViewController.xib */,
 				429854C615B853E30055D2F4 /* SecondViewController.xib */,
 				42C0BA3D1587E20A0054C43F /* MapVisualizationOptionsViewController.xib */,
 				42C0BA3A1587E1DB0054C43F /* HUDView.xib */,
-				429854C315B8523C0055D2F4 /* SearchResultsCell.h */,
-				429854C415B8523C0055D2F4 /* SearchResultsCell.m */,
-				429854C515B8523C0055D2F4 /* SearchResultsCell.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 		B5C22130155E9E4E0065E0CD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				42D3711E15B85DED00D7F4E3 /* mybackground@2x.jpg */,
 				42C0BA4A1587E4400054C43F /* Images */,
 				B5C22131155E9E4E0065E0CD /* ninuxapp-Info.plist */,
 				B5C22132155E9E4E0065E0CD /* InfoPlist.strings */,
@@ -389,6 +395,8 @@
 				B5B8AB12158D05E500402E06 /* marker_potential.png in Resources */,
 				B5B8AB14158D060E00402E06 /* marker_hotspot.png in Resources */,
 				429854C715B853E30055D2F4 /* SecondViewController.xib in Resources */,
+				42D3711F15B85DED00D7F4E3 /* mybackground@2x.jpg in Resources */,
+				42D3713015B86C6700D7F4E3 /* SearchResultsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +425,8 @@
 				42C0BA5D1587EFE30054C43F /* FirstViewController.m in Sources */,
 				42C0BA5F1587EFE30054C43F /* SecondViewController.m in Sources */,
 				B5B8AB0A158CFEB300402E06 /* customPin.m in Sources */,
+				429854CA15B856720055D2F4 /* MapNode.m in Sources */,
+				42D3712F15B86C6700D7F4E3 /* SearchResultsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

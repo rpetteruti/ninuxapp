@@ -33,8 +33,9 @@
 @property (nonatomic, retain) IBOutlet SearchResultsCell *tmpCell;
 @property (nonatomic, retain) MKPolyline *polyline;
 
--(void)populateMap;
+
 -(IBAction)reloadTable:(id)sender;
--(IBAction)goToNode:(id) sender;
+-(IBAction)findNode:(id) sender;
+-(IBAction)drawLine:(id)sender;
 
 @end

@@ -332,9 +332,9 @@
                 
                 
                 customPin *annotationPoint = [[customPin alloc] init];
-                annotationPoint.type = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 3)] ;
+                annotationPoint.associatedNode.type = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 3)] ;
                 
-                if ([annotationPoint.type isEqualToString:@"active"]) {
+                if ([annotationPoint.associatedNode.type isEqualToString:@"active"]) {
                     nodeCount++;
                 }
                
@@ -363,15 +363,15 @@
         annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         
         customPin *tappedPin = annotation;
-        NSLog(@"Type: %@",tappedPin.type);
+        NSLog(@"Type: %@",tappedPin.associatedNode.type);
         UIImage *pinImage = [UIImage imageNamed:@"RedMapPin.png"];
         
         
-        if ([tappedPin.type isEqualToString:@"active"]) {
+        if ([tappedPin.associatedNode.type isEqualToString:@"active"]) {
             pinImage=[UIImage imageNamed:@"marker_active.png"];
-        }else if ([tappedPin.type isEqualToString:@"potential"]) {
+        }else if ([tappedPin.associatedNode.type isEqualToString:@"potential"]) {
             pinImage=[UIImage imageNamed:@"marker_potential.png"];
-        }else if ([tappedPin.type isEqualToString:@"hotspot"]) {
+        }else if ([tappedPin.associatedNode.type isEqualToString:@"hotspot"]) {
             pinImage=[UIImage imageNamed:@"marker_hotspot.png"];
         }
         

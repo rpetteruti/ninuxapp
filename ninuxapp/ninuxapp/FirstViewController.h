@@ -13,6 +13,7 @@
 #import <sqlite3.h>
 #import "SBJson.h"
 #import "customPin.h"
+#import "MapNode.h"
 
 #define pathDB @"nodes.sqlite"
 

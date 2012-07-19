@@ -136,7 +136,7 @@
     
     
     NSLog(@"tag bottone: %d,riga, %d",cell.tag,indexPath.row);
-    [cell.goToNode addTarget:self action:@selector(gotoNode:) forControlEvents:UIControlEventTouchUpInside];
+    //[cell.goToNode addTarget:self action:@selector(findNode:) forControlEvents:UIControlEventTouchUpInside];
     
     
     
@@ -355,7 +355,7 @@
 }
 
 
--(IBAction)goToNode:(id) sender{
+-(IBAction)findNode:(id) sender{
     
     UIButton *buttonPressed = (UIButton *) sender;
     int row = [buttonPressed superview].tag;
