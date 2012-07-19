@@ -11,14 +11,30 @@
 #import <MapKit/MapKit.h>
 #import "SBJson.h"
 #import <sqlite3.h>
+#import "MapNode.h"
+#import "SearchResultsCell.h"
+#define pathDB @"nodes.sqlite"
 
 
-@interface SecondViewController : UIViewController{
+@interface SecondViewController : UIViewController <UISearchDisplayDelegate, UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,MKMapViewDelegate> {
     sqlite3 *database;
     IBOutlet MKMapView *map;
     NSString *writableDBPath;
     
+    NSMutableDictionary *resultsDictionary;
+    NSMutableArray *resultsArray;
+    SearchResultsCell *tmpCell;
+    MKPolyline *polyline;
+    
 }
+
+
+@property (nonatomic, retain) NSMutableArray *resultsArray;
+@property (nonatomic, retain) IBOutlet SearchResultsCell *tmpCell;
+@property (nonatomic, retain) MKPolyline *polyline;
+
 -(void)populateMap;
+-(IBAction)reloadTable:(id)sender;
+-(IBAction)goToNode:(id) sender;
 
 @end
