@@ -16,7 +16,7 @@
 
 
 @implementation SecondViewController
-@synthesize resultsArray,tmpCell,polyline;
+@synthesize resultsArray,tmpCell,polyline,linksArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +33,7 @@
     [super viewDidLoad];
     [self zoomOnCoord:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:0.2];
     resultsArray = [[NSMutableArray alloc] init];
+    linksArray = [[NSMutableArray alloc] init];
     self.searchDisplayController.searchResultsTableView.separatorStyle= UITableViewCellSeparatorStyleNone;
     self.searchDisplayController.searchResultsTableView.backgroundColor = [UIColor clearColor];
     
@@ -104,7 +105,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@" numberofrows: %d",[resultsArray count]);
+    //NSLog(@" numberofrows: %d",[resultsArray count]);
     return [resultsArray count];
     
 }
@@ -225,7 +226,9 @@
 -(void)searchNodes:(NSString *)searchText{
     sqlite3_stmt *selectstmt;
 	//const char *sql = "select name from nodes";
-    NSString *sqlSearch = [NSString stringWithFormat:@"SELECT name, type FROM nodes WHERE name LIKE '%%%@%%'",searchText];
+    NSString *sqlSearch = [NSString stringWithFormat:@"SELECT name, type,lat,lng FROM nodes WHERE name LIKE '%%%@%%'",searchText];
+    
+    
     NSLog(@"Search query:%@",sqlSearch);
     const char *sql = [sqlSearch UTF8String];
     if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
@@ -239,13 +242,17 @@
                 
                 
                 
-                NSLog(@"Node found:%@",nodeName);
                 MapNode *node = [[MapNode alloc] init];
                 node.nodeName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt,0)];
                 node.type = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt,1)];
+                CLLocationCoordinate2D coordinates;
                 
+                coordinates.latitude = [[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 2)]doubleValue];
+                coordinates.longitude = [[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 3)]doubleValue];
+                node.coords=coordinates;
                 [resultsArray addObject:node];       
-                NSLog(@"RESULTSARRAY:\n %@",resultsArray);
+                
+                NSLog(@"Node found:%@, lat: %f, lon: %f",nodeName,node.coords.latitude,node.coords.longitude);
                 
                 
             }
@@ -257,7 +264,11 @@
 
 
 
+
+
+
 -(void)populateMapFromDB{
+    int i=0;
     sqlite3_stmt *selectstmt;
 	const char *sql = "select name,lat,lng,type from nodes";
     NSLog(@"writable path:%@",writableDBPath);
@@ -268,10 +279,11 @@
 			
 			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
                 
+                //NSLog(@"latitudine come esce dal db: %@",[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)]);                
                 CLLocationCoordinate2D annotationCoord;
                 
-                annotationCoord.latitude = [[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)]doubleValue];
-                annotationCoord.longitude = [[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 2)]doubleValue];
+                annotationCoord.latitude = [[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)]floatValue];
+                annotationCoord.longitude = [[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 2)]floatValue];
                 
                 
                 customPin *annotationPoint = [[customPin alloc] init];
@@ -281,16 +293,19 @@
                 MapNode *node = [[MapNode alloc] init];
                 node.type=[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 3)];
                 node.nodeName= annotationPoint.title = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 0)];
+                node.coords=annotationCoord;
                 
+                //NSLog(@"COORDINATE NODO: %f,%f",node.coords.latitude,node.coords.longitude);
                 
                 annotationPoint.associatedNode=node;
                 
                 
                 
                 if ([annotationPoint.associatedNode.type isEqualToString:@"active"]) {
-                    nodeCount++;
+                   
                 }
-                
+                nodeCount++;
+                i++;
                 
                 annotationPoint.coordinate = annotationCoord;
                 annotationPoint.title = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 0)];
@@ -303,6 +318,7 @@
         }
     }
     NSLog(@"nodi totali %i",nodeCount);
+    NSLog(@"righe: %d",i);
     [self performSelectorOnMainThread:@selector(reloadMap) withObject:nil waitUntilDone:FALSE];
 }
 
@@ -322,7 +338,7 @@
         customPin *tappedPin = annotation;
         
         UIImage *pinImage = [UIImage imageNamed:@"RedMapPin.png"];
-        NSLog(@"nodo di tipo %@",tappedPin.associatedNode.type);
+        //NSLog(@"nodo di tipo ANNOTAZIONE %@",tappedPin.associatedNode.type);
         
         if ([tappedPin.associatedNode.type isEqualToString:@"active"]) {
             
@@ -365,7 +381,7 @@
     MapNode *node =[resultsArray objectAtIndex:row];
     
     NSArray *arr = [map annotations];
-    
+    NSLog(@"NUMERO DI ANNOTAZIONI: %d",[arr count]);
     for(int i=0; i<[arr count]; i++)
     { 
         MKPointAnnotation *ann = [arr objectAtIndex:i];
@@ -385,12 +401,107 @@
 }
 
 
+-(IBAction)doLookForLinks:(id)sender{
+    UIButton *buttonPressed = (UIButton *) sender;
+    int row = [buttonPressed superview].tag;
+    
+    MapNode *node =[resultsArray objectAtIndex:row];
+    //NSLog(@"node.name: %@ , latitanji:%f longitanji: %f",node.nodeName,node.coords.latitude,node.coords.longitude);
+    
+    
+    [self findLinksFromCoordinate:node.coords];
+    
+}
+
+-(void)findLinksFromCoordinate: (CLLocationCoordinate2D) coord {
+       [linksArray removeAllObjects];
+    //to_lat,from_lng,from_lat,to_lng,etx
+    NSLog(@"latitanji:%f longitanji: %f",coord.latitude,coord.longitude);
+    int i =0;
+    float lati=coord.latitude;
+    float longi=coord.longitude;
+    sqlite3_stmt *selectstmt;
+	//const char *sql = "select name from nodes";
+    
+        
+    
+    
+    NSString *sqlSearch = [NSString stringWithFormat:@"SELECT from_lat,from_lng FROM links WHERE to_lat = '%f' AND to_lng = '%f'",lati,longi];//,coord.latitude]; //AND to_lng = '%%%f%%'",coord.latitude,coord.longitude];//AND from_lng LIKE '%%%@%%'",latitudine,longitudine];
+    NSLog(@"Search query:%@",sqlSearch);
+    const char *sql = [sqlSearch UTF8String];
+    if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
+        
+		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {   
+			
+			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
+                
+                               
+                CLLocationCoordinate2D* coords = malloc(2 * sizeof(CLLocationCoordinate2D));
+                
+                CLLocationDegrees latdeg = [[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 0)] floatValue];
+                CLLocationDegrees londeg = [[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)] floatValue];
+                
+                
+                coords[0]=CLLocationCoordinate2DMake(latdeg, londeg);
+                coords[1]=coord;
+                
+                MKPolyline *linkLine = [MKPolyline polylineWithCoordinates:coords count:2];
+                                
+                [linksArray addObject:linkLine];       
+                //NSLog(@"ARRAY DEI LINK:\n %@,%f,%f",linksArray,latdeg,londeg);
+                NSLog(@"Disegno la linea: ( %f,%f : %f,%f )",lati,longi,latdeg,londeg);
+                //[map setNeedsDisplay];
+                
+                
+                i++;
+            }
+            NSLog(@"NUMERO RIGHE: %d",i);
+        }
+    }
+   else{
+    sqlSearch = [NSString stringWithFormat:@"SELECT to_lat,to_lng FROM links WHERE from_lat = '%f' AND from_lng = '%f'",lati,longi];
+    NSLog(@"Search query:%@",sqlSearch);
+    sql = [sqlSearch UTF8String];
+    if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
+        
+		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {   
+			
+			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
+                
+                CLLocationCoordinate2D* coords = malloc(2 * sizeof(CLLocationCoordinate2D));
+                
+                CLLocationDegrees latdeg = [[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 0)] floatValue];
+                CLLocationDegrees londeg = [[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)] floatValue];
+                
+                
+                coords[0]=CLLocationCoordinate2DMake(latdeg, londeg);
+                coords[1]=coord;
+                
+                MKPolyline *linkLine = [MKPolyline polylineWithCoordinates:coords count:2];
+                
+                [linksArray addObject:linkLine];       
+                NSLog(@"ARRAY DEI LINK:\n %@",linksArray);
+               
+                        
+            }
+        }
+    }
+    }
+     [self displayLinkLines];
+}
+
+
+
+
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id < MKOverlay >)overlay{
+    NSLog(@"TITOLO LINEA: %@",overlay.title);
+    int i = [overlay.title intValue];
     
     
+    MKPolyline *poly = (MKPolyline*) [linksArray objectAtIndex:i];
     
-    MKPolylineView* lineView = [[MKPolylineView alloc] initWithPolyline:self.polyline] ;
+    MKPolylineView* lineView = [[MKPolylineView alloc] initWithPolyline:poly];
     lineView.fillColor = [UIColor greenColor];
     lineView.strokeColor = [UIColor greenColor];
     lineView.lineWidth = 3;
@@ -398,7 +509,24 @@
 }
 
 
+-(void) displayLinkLines{
+    [self.searchDisplayController setActive:NO];
+    //[self zoomOnCoord:ann.coordinate zoomLevel:0.0];
+ 
+    int i=0;
+        for(MKPolyline *poly in linksArray){
+            poly.title=[NSString stringWithFormat:@"%d",i];
+            [map addOverlay:poly];
+            i++;
 
+        }
+          
+                
+                [map setNeedsDisplay];
+               
+          
+    
+}
 
 
 -(IBAction)drawLine:(id)sender{

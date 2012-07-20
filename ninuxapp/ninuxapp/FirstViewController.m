@@ -224,6 +224,10 @@
     NSDictionary *items = [rawJson JSONValue];
     NSArray *types = [items allKeys];//here i have all the types of the nodes
     
+    
+    int numVolte=0;
+    
+    
     int count = 0;
     if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
         if (TRUE) {//TODO we have to do the clean of the database only if there is a new version of the json
@@ -242,15 +246,15 @@
             //now we re-populate the database with new values from json file
             
             for (NSString *type in types) {
-                NSLog(@"TIPO DI TIPO: %@",type);
+                
                 if(![type isEqualToString:@"links"]){
                     NSDictionary *nodes = [items valueForKeyPath:type];
                     NSArray *keys = [nodes allKeys];
                     
                     for (NSString *key in keys) {
                         NSDictionary *node = [nodes objectForKey:key];
-                        NSLog(@"Node name: %@\n",[node objectForKey:@"name"]);
-                        NSLog(@"Node status: %@\n",[node objectForKey:@"status"]);
+                        //NSLog(@"Node name: %@\n",[node objectForKey:@"name"]);
+                       // NSLog(@"Node status: %@\n",[node objectForKey:@"status"]);
                         //if (![node objectForKey:@"dummy"])NSLog(@"dato non presente");
                         const char *sql_ins = "";
                         
@@ -260,12 +264,16 @@
                             NSAssert1(0, @"Error: failed to prepare statement with message ‘%s’.", sqlite3_errmsg(database));
                         }else {
                             sqlite3_stmt *statement;
-                            NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO nodes (name,lat,lng,type) VALUES(\"%@\",\"%@\",\"%@\",\"%@\")",[node objectForKey:@"name"],[node objectForKey:@"lat"],[node objectForKey:@"lng"],type];
-                            NSLog(@"insertSQL: %@",insertSQL);
+                            
+                            float latitudine = [[node objectForKey:@"lat"]floatValue];
+                            float longitudine = [[node objectForKey:@"lng"]floatValue];
+                            
+                            NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO nodes (name,lat,lng,type) VALUES(\"%@\",\"%f\",\"%f\",\"%@\")",[node objectForKey:@"name"],latitudine,longitudine,type];
+                            //NSLog(@"insertSQL: %@",insertSQL);
                             const char *insert_stmt = [insertSQL UTF8String];
                             sqlite3_prepare_v2(database, insert_stmt, -1, &statement, NULL);
                             if(sqlite3_step(statement) == SQLITE_DONE){
-                                NSLog(@"Insert successful node");
+                                //NSLog(@"Insert successful node");
                             }else{
                                 NSLog(@"Insert failed");
                             }
@@ -277,7 +285,7 @@
                     }
                 }
                 else if([type isEqualToString:@"links"]){
-                  
+            
                     NSArray *links = [items valueForKeyPath:type];
                     NSLog(@"TEST: %@ %i",[links objectAtIndex:0],[links count]);
                     // NSDictionary *link=[links objectAtIndex:0];
@@ -286,8 +294,11 @@
                     //NSLog(@"TEST 3: %@",[link objectForKey:@"etx"]);
                     for (NSDictionary *link in links) {
                         // NSDictionary *link = [links objectForKey:key];
-                        NSLog(@"link to_lat: %@\n",[link objectForKey:@"to_lat"]);
-                        NSLog(@"Node dbm: %@\n",[link objectForKey:@"dbm"]);
+                        float f_latitudine = [[link objectForKey:@"from_lat"]floatValue];
+                        float f_longitudine = [[link objectForKey:@"from_lng"]floatValue];
+                        float t_latitudine = [[link objectForKey:@"to_lat"]floatValue];
+                        float t_longitudine = [[link objectForKey:@"to_lng"]floatValue];
+                       
                         
                         const char *sql_ins = "";
                         
@@ -297,12 +308,13 @@
                             NSAssert1(0, @"Error: failed to prepare statement with message ‘%s’.", sqlite3_errmsg(database));
                         }else {
                             sqlite3_stmt *statement;
-                            NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO links (to_lat,from_lng,from_lat,to_lng,etx) VALUES(\"%@\",\"%@\",\"%@\",\"%@\",\"%@\")",[link objectForKey:@"to_lat"],[link objectForKey:@"from_lng"],[link objectForKey:@"from_lat"],[link objectForKey:@"to_lng"],[link objectForKey:@"etx"]];
+                            NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO links (to_lat,from_lng,from_lat,to_lng,etx) VALUES(\"%f\",\"%f\",\"%f\",\"%f\",\"%@\")",t_latitudine,f_longitudine,f_latitudine,t_longitudine,[link objectForKey:@"etx"]];
                             NSLog(@"insertSQL: %@",insertSQL);
                             const char *insert_stmt = [insertSQL UTF8String];
                             sqlite3_prepare_v2(database, insert_stmt, -1, &statement, NULL);
                             if(sqlite3_step(statement) == SQLITE_DONE){
                                 NSLog(@"Insert successful link");
+                                numVolte++;
                             }else{
                                 NSLog(@"Insert link failed");
                             }
@@ -312,6 +324,7 @@
                         count ++;
                     }
                 }
+                
 
                 
             }
@@ -324,6 +337,7 @@
         NSLog(@"Error in databse connection");
     }    
     NSLog(@"Number of nodes: %i",count);
+NSLog(@"VOLTE: %d",numVolte);
     [self populateMapFromDB];
 }
 
