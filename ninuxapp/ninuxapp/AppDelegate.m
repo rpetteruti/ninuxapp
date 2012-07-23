@@ -62,7 +62,15 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken{
     
-    // Qui registrate e/o inviate il token
+    
+    NSLog(@"Device Token : %@", devToken);
+    NSLog(@"Device Token pretty: %@",[[[devToken description] 
+                                       stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@""]] 
+                                      stringByReplacingOccurrencesOfString:@" " withString:@""]);
+    //NSLog(@"Device Token : %@", self.currentDeviceToken);
+    NSLog(@"Remote type : %d", [[UIApplication sharedApplication] enabledRemoteNotificationTypes]);
+    
+    
     NSLog(@"Notification token taken");
     
 }
