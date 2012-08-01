@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {   
     [super viewDidLoad];
+    [self loadSettings];
     
     
     
@@ -43,7 +44,24 @@
     NSLog(@"Start populating map...");
     [self zoomOnCoord:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:0.2];
     //[map setCenterCoordinate:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:13 animated:YES];
-	[self performSelectorInBackground:@selector(populateMap) withObject:nil];//TODO ora carica da db, dopo bisognerà chiamare populateMap
+    
+    //start checking if i need to download all nodes from server
+    
+    CFTimeInterval now = CFAbsoluteTimeGetCurrent();
+    if (( now - lastMapUpdate) <86400.0) {//TODO change the time to fit with what we need
+        NSLog(@"Load nodes from DB");
+        [self performSelectorInBackground:@selector(populateMapFromDB) withObject:nil];//load nodes from local db
+        
+    } else{
+                NSLog(@"Load nodes from Server");
+            [self performSelectorInBackground:@selector(populateMap) withObject:nil];//need to download nodes from server
+        lastMapUpdate = CFAbsoluteTimeGetCurrent();
+        [self saveSettings];
+    }
+    
+    
+    
+    
     NSArray *nibviews=[[NSBundle mainBundle] loadNibNamed:@"HUDView" owner:self options:nil];
     
     hudView =  (HUDView *) [nibviews objectAtIndex:0];
@@ -460,6 +478,29 @@ NSLog(@"VOLTE: %d",numVolte);
 -(void) reloadMap
 {
     [map setRegion:map.region animated:TRUE];
+}
+
+-(void)loadSettings{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	NSString *lastMapUpdate_time = [prefs objectForKey:@"lastMapUpdate"];
+	if (lastMapUpdate_time != nil){
+		
+		lastMapUpdate = (double)[prefs doubleForKey:@"lastMapUpdate"];//load when i did the last update of the map
+		NSLog(@"load last update");
+	}
+	else {
+		
+		lastMapUpdate = CFAbsoluteTimeGetCurrent();//if i never did the update i do it now
+        [self saveSettings];
+        NSLog(@"never saved last update");
+		
+    }
+}
+
+-(void)saveSettings{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	[prefs setDouble:lastMapUpdate forKey:@"lastMapUpdate"];
+	[prefs synchronize];
 }
 
 @end

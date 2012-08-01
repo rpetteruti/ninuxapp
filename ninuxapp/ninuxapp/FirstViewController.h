@@ -31,6 +31,8 @@ static sqlite3 *database = nil;
     BOOL  controlsAreDisplayed;
     HUDView *hudView;
     
+    double lastMapUpdate;
+    
     
     //map related stuff
     IBOutlet MKMapView *map;
@@ -41,7 +43,7 @@ static sqlite3 *database = nil;
 }
 -(void)populateMap;
 
-
+-(void)saveSettings;
 
 
 
