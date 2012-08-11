@@ -367,6 +367,7 @@
             pinImage=[UIImage imageNamed:@"marker_potential.png"];
         }else if ([tappedPin.associatedNode.type isEqualToString:@"hotspot"]) {
             pinImage=[UIImage imageNamed:@"marker_hotspot.png"];
+             annotationView.rightCalloutAccessoryView = sampleButton; 
         }
         
         annotationView.image = pinImage;
@@ -486,7 +487,7 @@
             NSLog(@"NUMERO RIGHE: %d",i);
         }
     }
-   else{
+   if(i==0){
     sqlSearch = [NSString stringWithFormat:@"SELECT to_lat,to_lng FROM links WHERE from_lat = '%f' AND from_lng = '%f'",lati,longi];
     NSLog(@"Search query:%@",sqlSearch);
     sql = [sqlSearch UTF8String];
@@ -510,8 +511,13 @@
                 [linksArray addObject:linkLine];       
                 NSLog(@"ARRAY DEI LINK:\n %@",linksArray);
                
-                        
+                NSLog(@"Disegno la linea: ( %f,%f : %f,%f )",lati,longi,latdeg,londeg);
+                //[map setNeedsDisplay];
+                
+                
+                i++;
             }
+            NSLog(@"NUMERO RIGHE SECONDA QUERY: %d",i);
         }
     }
     }
