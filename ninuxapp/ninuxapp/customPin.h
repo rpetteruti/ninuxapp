@@ -7,16 +7,16 @@
 //
 
 #import <MapKit/MapKit.h>
-
+#import "MapNode.h"
 
 @interface customPin : MKPointAnnotation
 { 
-    NSString *nodeName;
-    NSString *type;
+    MapNode *associatedNode;
     
     
 }
-@property (nonatomic, retain) NSString *nodeName;
-@property (nonatomic, retain) NSString *type;
+@property (nonatomic, retain) MapNode *associatedNode;
+
+
 
 @end

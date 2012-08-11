@@ -16,7 +16,7 @@
 #define pathDB @"nodes.sqlite"
 
 
-@interface SecondViewController : UIViewController <UISearchDisplayDelegate, UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,MKMapViewDelegate> {
+@interface MapViewController : UIViewController <UISearchDisplayDelegate, UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,MKMapViewDelegate> {
     sqlite3 *database;
     IBOutlet MKMapView *map;
     NSString *writableDBPath;
@@ -25,16 +25,21 @@
     NSMutableArray *resultsArray;
     SearchResultsCell *tmpCell;
     MKPolyline *polyline;
+    //CLLocationCoordinate2D *linksArray;
     
 }
 
 
 @property (nonatomic, retain) NSMutableArray *resultsArray;
+@property (nonatomic, retain) NSMutableArray *linksArray;
 @property (nonatomic, retain) IBOutlet SearchResultsCell *tmpCell;
 @property (nonatomic, retain) MKPolyline *polyline;
 
--(void)populateMap;
+
 -(IBAction)reloadTable:(id)sender;
--(IBAction)goToNode:(id) sender;
+-(IBAction)findNode:(id) sender;
+-(IBAction)drawLine:(id)sender;
+-(IBAction)doLookForLinks:(id)sender;
+-(void) displayLinkLines;
 
 @end

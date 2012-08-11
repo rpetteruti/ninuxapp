@@ -9,6 +9,6 @@
 #import "customPin.h"
 
 @implementation customPin
-@synthesize nodeName,type;
+@synthesize associatedNode;
 
 @end

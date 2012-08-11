@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "FeedReaderViewController.h"
 
-@interface FirstViewController ()
+@interface FeedReaderViewController ()
 
 
 
@@ -16,21 +16,22 @@
 
 
 
-@implementation FirstViewController
+@implementation FeedReaderViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Mappa", @"Mappa");
-        self.tabBarItem.image = [UIImage imageNamed:@"first"];
+        self.title = NSLocalizedString(@"Blog", @"Blog");
+        self.tabBarItem.image = [UIImage imageNamed:@"news"];
     }
     return self;
 }
 
 - (void)viewDidLoad
-{   
+{
     [super viewDidLoad];
+    [self loadSettings];
     
     
     
@@ -43,7 +44,24 @@
     NSLog(@"Start populating map...");
     [self zoomOnCoord:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:0.2];
     //[map setCenterCoordinate:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:13 animated:YES];
-	[self performSelectorInBackground:@selector(populateMap) withObject:nil];//TODO ora carica da db, dopo bisognerà chiamare populateMap
+    
+    //start checking if i need to download all nodes from server
+    
+    CFTimeInterval now = CFAbsoluteTimeGetCurrent();
+    if (( now - lastMapUpdate) <86400.0) {//TODO change the time to fit with what we need
+        NSLog(@"Load nodes from DB");
+        [self performSelectorInBackground:@selector(populateMapFromDB) withObject:nil];//load nodes from local db
+        
+    } else{
+        NSLog(@"Load nodes from Server");
+        [self performSelectorInBackground:@selector(populateMap) withObject:nil];//need to download nodes from server
+        lastMapUpdate = CFAbsoluteTimeGetCurrent();
+        [self saveSettings];
+    }
+    
+    
+    
+    
     NSArray *nibviews=[[NSBundle mainBundle] loadNibNamed:@"HUDView" owner:self options:nil];
     
     hudView =  (HUDView *) [nibviews objectAtIndex:0];
@@ -63,12 +81,12 @@
     touchRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(displayBar:)];
     
     touchRecognizer.delegate=self;
-    [self.view addGestureRecognizer:touchRecognizer]; 
+    [self.view addGestureRecognizer:touchRecognizer];
     
 }
 
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {   
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     
     if (otherGestureRecognizer == touchRecognizer){
         
@@ -180,7 +198,7 @@
 		[[NSRunLoop currentRunLoop] addTimer:myTimer forMode:NSDefaultRunLoopMode];
 	}
 	else
-	{   
+	{
         
         [self displayBar:NO];
 		searchBar.alpha = 0.0;
@@ -224,11 +242,15 @@
     NSDictionary *items = [rawJson JSONValue];
     NSArray *types = [items allKeys];//here i have all the types of the nodes
     
+    
+    int numVolte=0;
+    
+    
     int count = 0;
     if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
         if (TRUE) {//TODO we have to do the clean of the database only if there is a new version of the json
             sqlite3_stmt *statement;
-            NSString *deleteSQL = @"DELETE FROM nodes";        
+            NSString *deleteSQL = @"DELETE FROM nodes";
             const char *delete_stmt = [deleteSQL UTF8String];
             sqlite3_prepare_v2(database, delete_stmt, -1, &statement, NULL);
             if(sqlite3_step(statement) == SQLITE_DONE){
@@ -237,20 +259,20 @@
                 NSLog(@"Delete failed");
                 //NSAssert1(0, @"Error while deleting. '%s'", sqlite3_errmsg(database));
             }
-            sqlite3_finalize(statement); 
+            sqlite3_finalize(statement);
             
             //now we re-populate the database with new values from json file
             
             for (NSString *type in types) {
-                NSLog(@"tipo: %@",type);
+                
                 if(![type isEqualToString:@"links"]){
                     NSDictionary *nodes = [items valueForKeyPath:type];
                     NSArray *keys = [nodes allKeys];
                     
                     for (NSString *key in keys) {
                         NSDictionary *node = [nodes objectForKey:key];
-                        NSLog(@"Node name: %@\n",[node objectForKey:@"name"]);
-                        NSLog(@"Node status: %@\n",[node objectForKey:@"status"]);
+                        //NSLog(@"Node name: %@\n",[node objectForKey:@"name"]);
+                        // NSLog(@"Node status: %@\n",[node objectForKey:@"status"]);
                         //if (![node objectForKey:@"dummy"])NSLog(@"dato non presente");
                         const char *sql_ins = "";
                         
@@ -260,39 +282,80 @@
                             NSAssert1(0, @"Error: failed to prepare statement with message ‘%s’.", sqlite3_errmsg(database));
                         }else {
                             sqlite3_stmt *statement;
-                            NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO nodes (name,lat,lng,type) VALUES(\"%@\",\"%@\",\"%@\",\"%@\")",[node objectForKey:@"name"],[node objectForKey:@"lat"],[node objectForKey:@"lng"],type];
-                            NSLog(@"insertSQL: %@",insertSQL);
+                            
+                            float latitudine = [[node objectForKey:@"lat"]floatValue];
+                            float longitudine = [[node objectForKey:@"lng"]floatValue];
+                            
+                            NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO nodes (name,lat,lng,type) VALUES(\"%@\",\"%f\",\"%f\",\"%@\")",[node objectForKey:@"name"],latitudine,longitudine,type];
+                            //NSLog(@"insertSQL: %@",insertSQL);
                             const char *insert_stmt = [insertSQL UTF8String];
                             sqlite3_prepare_v2(database, insert_stmt, -1, &statement, NULL);
                             if(sqlite3_step(statement) == SQLITE_DONE){
-                                NSLog(@"Insert successful node");
+                                //NSLog(@"Insert successful node");
                             }else{
                                 NSLog(@"Insert failed");
                             }
-                            sqlite3_finalize(statement); 
+                            sqlite3_finalize(statement);
                             
                             //NSLog(@"Node added");
                         }
                         count ++;
                     }
                 }
+                else if([type isEqualToString:@"links"]){
+                    
+                    NSArray *links = [items valueForKeyPath:type];
+                    NSLog(@"TEST: %@ %i",[links objectAtIndex:0],[links count]);
+                    // NSDictionary *link=[links objectAtIndex:0];
+                    // NSLog(@"TEST 2: %@",[[links objectAtIndex:0] objectForKey:@"etx"]);
+                    //NSArray *keys = [links allKeys];
+                    //NSLog(@"TEST 3: %@",[link objectForKey:@"etx"]);
+                    for (NSDictionary *link in links) {
+                        // NSDictionary *link = [links objectForKey:key];
+                        float f_latitudine = [[link objectForKey:@"from_lat"]floatValue];
+                        float f_longitudine = [[link objectForKey:@"from_lng"]floatValue];
+                        float t_latitudine = [[link objectForKey:@"to_lat"]floatValue];
+                        float t_longitudine = [[link objectForKey:@"to_lng"]floatValue];
+                        
+                        
+                        const char *sql_ins = "";
+                        
+                        sqlite3_stmt *insert_statement;
+                        if (sqlite3_prepare_v2(database, sql_ins, -1, &insert_statement, NULL) != SQLITE_OK)
+                        {
+                            NSAssert1(0, @"Error: failed to prepare statement with message ‘%s’.", sqlite3_errmsg(database));
+                        }else {
+                            sqlite3_stmt *statement;
+                            NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO links (to_lat,from_lng,from_lat,to_lng,etx) VALUES(\"%f\",\"%f\",\"%f\",\"%f\",\"%@\")",t_latitudine,f_longitudine,f_latitudine,t_longitudine,[link objectForKey:@"etx"]];
+                            NSLog(@"insertSQL: %@",insertSQL);
+                            const char *insert_stmt = [insertSQL UTF8String];
+                            sqlite3_prepare_v2(database, insert_stmt, -1, &statement, NULL);
+                            if(sqlite3_step(statement) == SQLITE_DONE){
+                                NSLog(@"Insert successful link");
+                                numVolte++;
+                            }else{
+                                NSLog(@"Insert link failed");
+                            }
+                            sqlite3_finalize(statement);
+                            
+                        }
+                        count ++;
+                    }
+                }
+                
+                
                 
             }
             
-            
-            
         }
-        
-        
-        
-        
         sqlite3_close(database);
         
     }else {
         sqlite3_close(database);
         NSLog(@"Error in databse connection");
-    }    
+    }
     NSLog(@"Number of nodes: %i",count);
+    NSLog(@"VOLTE: %d",numVolte);
     [self populateMapFromDB];
 }
 
@@ -321,7 +384,7 @@
     int nodeCount=0;
     if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
         
-		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {   
+		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
 			
 			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
                 
@@ -332,13 +395,13 @@
                 
                 
                 customPin *annotationPoint = [[customPin alloc] init];
-                annotationPoint.type = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 3)] ;
+                annotationPoint.associatedNode.type = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 3)] ;
                 
-                if ([annotationPoint.type isEqualToString:@"active"]) {
+                if ([annotationPoint.associatedNode.type isEqualToString:@"active"]) {
                     nodeCount++;
                 }
-               
-                     
+                
+                
                 annotationPoint.coordinate = annotationCoord;
                 annotationPoint.title = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 0)];
                 annotationPoint.subtitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
@@ -358,20 +421,20 @@
     
     
     MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"SFAnnotationIdentifier"];
-    if(!annotationView) {   
+    if(!annotationView) {
         annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"SFAnnotationIdentifier"];
         annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         
         customPin *tappedPin = annotation;
-        NSLog(@"Type: %@",tappedPin.type);
+        //NSLog(@"Type: %@",tappedPin.associatedNode.type);
         UIImage *pinImage = [UIImage imageNamed:@"RedMapPin.png"];
         
         
-        if ([tappedPin.type isEqualToString:@"active"]) {
+        if ([tappedPin.associatedNode.type isEqualToString:@"active"]) {
             pinImage=[UIImage imageNamed:@"marker_active.png"];
-        }else if ([tappedPin.type isEqualToString:@"potential"]) {
+        }else if ([tappedPin.associatedNode.type isEqualToString:@"potential"]) {
             pinImage=[UIImage imageNamed:@"marker_potential.png"];
-        }else if ([tappedPin.type isEqualToString:@"hotspot"]) {
+        }else if ([tappedPin.associatedNode.type isEqualToString:@"hotspot"]) {
             pinImage=[UIImage imageNamed:@"marker_hotspot.png"];
         }
         
@@ -415,6 +478,29 @@
 -(void) reloadMap
 {
     [map setRegion:map.region animated:TRUE];
+}
+
+-(void)loadSettings{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	NSString *lastMapUpdate_time = [prefs objectForKey:@"lastMapUpdate"];
+	if (lastMapUpdate_time != nil){
+		
+		lastMapUpdate = (double)[prefs doubleForKey:@"lastMapUpdate"];//load when i did the last update of the map
+		NSLog(@"load last update");
+	}
+	else {
+		
+		lastMapUpdate = 86401.0;//TODO set a define for this value
+        [self saveSettings];
+        NSLog(@"never saved last update");
+		
+    }
+}
+
+-(void)saveSettings{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	[prefs setDouble:lastMapUpdate forKey:@"lastMapUpdate"];
+	[prefs synchronize];
 }
 
 @end

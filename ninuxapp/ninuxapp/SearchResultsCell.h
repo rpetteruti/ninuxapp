@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SideSwipeTableViewCell.h"
+
 
 @interface SearchResultsCell :UITableViewCell{
  UILabel *nodename;   

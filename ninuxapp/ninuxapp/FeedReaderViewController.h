@@ -13,13 +13,14 @@
 #import <sqlite3.h>
 #import "SBJson.h"
 #import "customPin.h"
+#import "MapNode.h"
 
 #define pathDB @"nodes.sqlite"
 
 
 static sqlite3 *database = nil;
 
-@interface FirstViewController : UIViewController <UIGestureRecognizerDelegate,HUDViewDelegate>{
+@interface FeedReaderViewController : UIViewController <UIGestureRecognizerDelegate,HUDViewDelegate>{
     
     NSTimer *myTimer;
     
@@ -29,6 +30,8 @@ static sqlite3 *database = nil;
     IBOutlet UIView * view;
     BOOL  controlsAreDisplayed;
     HUDView *hudView;
+    
+    double lastMapUpdate;
     
     
     //map related stuff
@@ -40,7 +43,7 @@ static sqlite3 *database = nil;
 }
 -(void)populateMap;
 
-
+-(void)saveSettings;
 
 
 
