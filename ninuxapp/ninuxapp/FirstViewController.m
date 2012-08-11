@@ -490,7 +490,7 @@
 	}
 	else {
 		
-		lastMapUpdate = CFAbsoluteTimeGetCurrent();//if i never did the update i do it now
+		lastMapUpdate = 86401.0;//TODO set a define for this value
         [self saveSettings];
         NSLog(@"never saved last update");
 		
