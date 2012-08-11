@@ -10,6 +10,14 @@
 		4237B12815D65909009C8F25 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 429854C615B853E30055D2F4 /* MapViewController.xib */; };
 		4237B21E15D65CE1009C8F25 /* news.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B21C15D65CE1009C8F25 /* news.png */; };
 		4237B21F15D65CE1009C8F25 /* news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B21D15D65CE1009C8F25 /* news@2x.png */; };
+		4237B22215D66197009C8F25 /* links.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22015D66197009C8F25 /* links.png */; };
+		4237B22315D66197009C8F25 /* links@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22115D66197009C8F25 /* links@2x.png */; };
+		4237B22915D662F3009C8F25 /* NodeAnnotation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22815D662F3009C8F25 /* NodeAnnotation.xib */; };
+		4237B22B15D66428009C8F25 /* logo_ninux.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22A15D66428009C8F25 /* logo_ninux.png */; };
+		4237B23515D66AC4009C8F25 /* NodeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237B23415D66AC4009C8F25 /* NodeAnnotation.m */; };
+		4237B23715D66FAB009C8F25 /* logo_ninux_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B23615D66FAB009C8F25 /* logo_ninux_pic.png */; };
+		4237B24615D68A90009C8F25 /* Sweep.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24515D68A90009C8F25 /* Sweep.png */; };
+		4237B24815D68F62009C8F25 /* links_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24715D68F61009C8F25 /* links_pic.png */; };
 		429854CA15B856720055D2F4 /* MapNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 429854C915B856720055D2F4 /* MapNode.m */; };
 		42AA28B515B870F70066CD83 /* nodes.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 42AA28B415B870F70066CD83 /* nodes.sqlite */; };
 		42C0BA2E1587E1C30054C43F /* 73-radar.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA251587E1C30054C43F /* 73-radar.png */; };
@@ -65,6 +73,15 @@
 /* Begin PBXFileReference section */
 		4237B21C15D65CE1009C8F25 /* news.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news.png; sourceTree = "<group>"; };
 		4237B21D15D65CE1009C8F25 /* news@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news@2x.png"; sourceTree = "<group>"; };
+		4237B22015D66197009C8F25 /* links.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = links.png; sourceTree = "<group>"; };
+		4237B22115D66197009C8F25 /* links@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "links@2x.png"; sourceTree = "<group>"; };
+		4237B22815D662F3009C8F25 /* NodeAnnotation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeAnnotation.xib; sourceTree = "<group>"; };
+		4237B22A15D66428009C8F25 /* logo_ninux.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ninux.png; sourceTree = "<group>"; };
+		4237B23315D66AC4009C8F25 /* NodeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeAnnotation.h; sourceTree = "<group>"; };
+		4237B23415D66AC4009C8F25 /* NodeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeAnnotation.m; sourceTree = "<group>"; };
+		4237B23615D66FAB009C8F25 /* logo_ninux_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ninux_pic.png; sourceTree = "<group>"; };
+		4237B24515D68A90009C8F25 /* Sweep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sweep.png; sourceTree = "<group>"; };
+		4237B24715D68F61009C8F25 /* links_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = links_pic.png; sourceTree = "<group>"; };
 		429854C615B853E30055D2F4 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		429854C815B856710055D2F4 /* MapNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNode.h; sourceTree = "<group>"; };
 		429854C915B856720055D2F4 /* MapNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapNode.m; sourceTree = "<group>"; };
@@ -165,6 +182,8 @@
 		42C0BA471587E3EC0054C43F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4237B23315D66AC4009C8F25 /* NodeAnnotation.h */,
+				4237B23415D66AC4009C8F25 /* NodeAnnotation.m */,
 				B5B8AB08158CFEB300402E06 /* customPin.h */,
 				B5B8AB09158CFEB300402E06 /* customPin.m */,
 				42C0BA571587EFE30054C43F /* FeedReaderViewController.h */,
@@ -177,6 +196,7 @@
 				42C0BA451587E3990054C43F /* MapVisualizationViewController.m */,
 				429854C815B856710055D2F4 /* MapNode.h */,
 				429854C915B856720055D2F4 /* MapNode.m */,
+				4237B22815D662F3009C8F25 /* NodeAnnotation.xib */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -209,8 +229,14 @@
 			children = (
 				B5B8AB0C158D001300402E06 /* map */,
 				B5C2213E155E9E4E0065E0CD /* first.png */,
+				4237B23615D66FAB009C8F25 /* logo_ninux_pic.png */,
+				4237B24715D68F61009C8F25 /* links_pic.png */,
 				B5C22140155E9E4E0065E0CD /* first@2x.png */,
+				4237B24515D68A90009C8F25 /* Sweep.png */,
+				4237B22A15D66428009C8F25 /* logo_ninux.png */,
 				42C0BA251587E1C30054C43F /* 73-radar.png */,
+				4237B22015D66197009C8F25 /* links.png */,
+				4237B22115D66197009C8F25 /* links@2x.png */,
 				42C0BA261587E1C30054C43F /* 73-radar@2x.png */,
 				42C0BA271587E1C30054C43F /* 103-map.png */,
 				42C0BA281587E1C30054C43F /* 103-map@2x.png */,
@@ -405,6 +431,13 @@
 				42AA28B515B870F70066CD83 /* nodes.sqlite in Resources */,
 				4237B21E15D65CE1009C8F25 /* news.png in Resources */,
 				4237B21F15D65CE1009C8F25 /* news@2x.png in Resources */,
+				4237B22215D66197009C8F25 /* links.png in Resources */,
+				4237B22315D66197009C8F25 /* links@2x.png in Resources */,
+				4237B22915D662F3009C8F25 /* NodeAnnotation.xib in Resources */,
+				4237B22B15D66428009C8F25 /* logo_ninux.png in Resources */,
+				4237B23715D66FAB009C8F25 /* logo_ninux_pic.png in Resources */,
+				4237B24615D68A90009C8F25 /* Sweep.png in Resources */,
+				4237B24815D68F62009C8F25 /* links_pic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +468,7 @@
 				B5B8AB0A158CFEB300402E06 /* customPin.m in Sources */,
 				429854CA15B856720055D2F4 /* MapNode.m in Sources */,
 				42D3712F15B86C6700D7F4E3 /* SearchResultsCell.m in Sources */,
+				4237B23515D66AC4009C8F25 /* NodeAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

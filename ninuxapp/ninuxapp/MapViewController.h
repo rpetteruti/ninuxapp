@@ -26,6 +26,8 @@
     SearchResultsCell *tmpCell;
     MKPolyline *polyline;
     //CLLocationCoordinate2D *linksArray;
+    MapNode *touchedNode;
+    IBOutlet UIButton *clearLinks;
     
 }
 
@@ -34,12 +36,15 @@
 @property (nonatomic, retain) NSMutableArray *linksArray;
 @property (nonatomic, retain) IBOutlet SearchResultsCell *tmpCell;
 @property (nonatomic, retain) MKPolyline *polyline;
+@property (nonatomic, retain) MapNode *touchedNode;
+@property (nonatomic, retain) IBOutlet UIButton *clearLinks;
 
 
 -(IBAction)reloadTable:(id)sender;
 -(IBAction)findNode:(id) sender;
 -(IBAction)drawLine:(id)sender;
 -(IBAction)doLookForLinks:(id)sender;
+-(IBAction)doClearLinks:(id)sender;
 -(void) displayLinkLines;
 
 @end
