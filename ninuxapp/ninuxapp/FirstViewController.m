@@ -29,7 +29,7 @@
 }
 
 - (void)viewDidLoad
-{   
+{
     [super viewDidLoad];
     [self loadSettings];
     
@@ -53,8 +53,8 @@
         [self performSelectorInBackground:@selector(populateMapFromDB) withObject:nil];//load nodes from local db
         
     } else{
-                NSLog(@"Load nodes from Server");
-            [self performSelectorInBackground:@selector(populateMap) withObject:nil];//need to download nodes from server
+        NSLog(@"Load nodes from Server");
+        [self performSelectorInBackground:@selector(populateMap) withObject:nil];//need to download nodes from server
         lastMapUpdate = CFAbsoluteTimeGetCurrent();
         [self saveSettings];
     }
@@ -81,12 +81,12 @@
     touchRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(displayBar:)];
     
     touchRecognizer.delegate=self;
-    [self.view addGestureRecognizer:touchRecognizer]; 
+    [self.view addGestureRecognizer:touchRecognizer];
     
 }
 
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {   
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     
     if (otherGestureRecognizer == touchRecognizer){
         
@@ -198,7 +198,7 @@
 		[[NSRunLoop currentRunLoop] addTimer:myTimer forMode:NSDefaultRunLoopMode];
 	}
 	else
-	{   
+	{
         
         [self displayBar:NO];
 		searchBar.alpha = 0.0;
@@ -250,7 +250,7 @@
     if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
         if (TRUE) {//TODO we have to do the clean of the database only if there is a new version of the json
             sqlite3_stmt *statement;
-            NSString *deleteSQL = @"DELETE FROM nodes";        
+            NSString *deleteSQL = @"DELETE FROM nodes";
             const char *delete_stmt = [deleteSQL UTF8String];
             sqlite3_prepare_v2(database, delete_stmt, -1, &statement, NULL);
             if(sqlite3_step(statement) == SQLITE_DONE){
@@ -259,7 +259,7 @@
                 NSLog(@"Delete failed");
                 //NSAssert1(0, @"Error while deleting. '%s'", sqlite3_errmsg(database));
             }
-            sqlite3_finalize(statement); 
+            sqlite3_finalize(statement);
             
             //now we re-populate the database with new values from json file
             
@@ -272,7 +272,7 @@
                     for (NSString *key in keys) {
                         NSDictionary *node = [nodes objectForKey:key];
                         //NSLog(@"Node name: %@\n",[node objectForKey:@"name"]);
-                       // NSLog(@"Node status: %@\n",[node objectForKey:@"status"]);
+                        // NSLog(@"Node status: %@\n",[node objectForKey:@"status"]);
                         //if (![node objectForKey:@"dummy"])NSLog(@"dato non presente");
                         const char *sql_ins = "";
                         
@@ -295,7 +295,7 @@
                             }else{
                                 NSLog(@"Insert failed");
                             }
-                            sqlite3_finalize(statement); 
+                            sqlite3_finalize(statement);
                             
                             //NSLog(@"Node added");
                         }
@@ -303,7 +303,7 @@
                     }
                 }
                 else if([type isEqualToString:@"links"]){
-            
+                    
                     NSArray *links = [items valueForKeyPath:type];
                     NSLog(@"TEST: %@ %i",[links objectAtIndex:0],[links count]);
                     // NSDictionary *link=[links objectAtIndex:0];
@@ -316,7 +316,7 @@
                         float f_longitudine = [[link objectForKey:@"from_lng"]floatValue];
                         float t_latitudine = [[link objectForKey:@"to_lat"]floatValue];
                         float t_longitudine = [[link objectForKey:@"to_lng"]floatValue];
-                       
+                        
                         
                         const char *sql_ins = "";
                         
@@ -336,14 +336,14 @@
                             }else{
                                 NSLog(@"Insert link failed");
                             }
-                            sqlite3_finalize(statement); 
+                            sqlite3_finalize(statement);
                             
                         }
                         count ++;
                     }
                 }
                 
-
+                
                 
             }
             
@@ -353,9 +353,9 @@
     }else {
         sqlite3_close(database);
         NSLog(@"Error in databse connection");
-    }    
+    }
     NSLog(@"Number of nodes: %i",count);
-NSLog(@"VOLTE: %d",numVolte);
+    NSLog(@"VOLTE: %d",numVolte);
     [self populateMapFromDB];
 }
 
@@ -384,7 +384,7 @@ NSLog(@"VOLTE: %d",numVolte);
     int nodeCount=0;
     if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
         
-		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {   
+		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
 			
 			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
                 
@@ -400,8 +400,8 @@ NSLog(@"VOLTE: %d",numVolte);
                 if ([annotationPoint.associatedNode.type isEqualToString:@"active"]) {
                     nodeCount++;
                 }
-               
-                     
+                
+                
                 annotationPoint.coordinate = annotationCoord;
                 annotationPoint.title = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 0)];
                 annotationPoint.subtitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
@@ -421,7 +421,7 @@ NSLog(@"VOLTE: %d",numVolte);
     
     
     MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"SFAnnotationIdentifier"];
-    if(!annotationView) {   
+    if(!annotationView) {
         annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"SFAnnotationIdentifier"];
         annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         
