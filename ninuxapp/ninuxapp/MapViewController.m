@@ -812,6 +812,7 @@
 
 -(IBAction)doCurl{
     MapOptionsViewController *opt = [[MapOptionsViewController alloc]initWithNibName:@"MapOptionsViewController" bundle:nil];
+    opt.delegate = self;
     opt.modalTransitionStyle = UIModalTransitionStylePartialCurl;
     opt.hidesBottomBarWhenPushed=YES;
     [self presentModalViewController:opt animated:YES];

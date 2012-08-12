@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MapOptionsViewController : UIViewController
 
+@protocol MapOptionsDelegate <NSObject>
+@required
+- (void) setMapType:(NSUInteger)type;
+@end
+
+
+
+@interface MapOptionsViewController : UIViewController {
+
+    
+IBOutlet UISegmentedControl *segmentedControl;
+
+}
+
+@property (nonatomic, retain) UISegmentedControl *segmentedControl;
+@property (nonatomic, assign) id <MapOptionsDelegate> delegate;
+
+
+-(IBAction) valueChanged;
 @end
