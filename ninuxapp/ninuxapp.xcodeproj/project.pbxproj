@@ -58,6 +58,8 @@
 		B56DC20515D7D1F7009F9F4C /* links_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24715D68F61009C8F25 /* links_pic.png */; };
 		B56DC20615D7D1F7009F9F4C /* links.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22015D66197009C8F25 /* links.png */; };
 		B56DC20715D7D1F7009F9F4C /* links@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22115D66197009C8F25 /* links@2x.png */; };
+		B56DC20C15D7D4DD009F9F4C /* Sweep.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24515D68A90009C8F25 /* Sweep.png */; };
+		B56DC20E15D7D4EB009F9F4C /* Page_curl.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B27315D6F611009C8F25 /* Page_curl.png */; };
 		B5912EE515D6717000A7676F /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5912EE315D6717000A7676F /* ArticleCell.m */; };
 		B5912EE615D6717000A7676F /* ArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5912EE415D6717000A7676F /* ArticleCell.xib */; };
 		B5912EEF15D671EE00A7676F /* UILabel+VerticalAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = B5912EEE15D671EE00A7676F /* UILabel+VerticalAlign.m */; };
@@ -470,6 +472,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56DC20E15D7D4EB009F9F4C /* Page_curl.png in Resources */,
+				B56DC20C15D7D4DD009F9F4C /* Sweep.png in Resources */,
 				B56DC20515D7D1F7009F9F4C /* links_pic.png in Resources */,
 				B56DC20615D7D1F7009F9F4C /* links.png in Resources */,
 				B56DC20715D7D1F7009F9F4C /* links@2x.png in Resources */,

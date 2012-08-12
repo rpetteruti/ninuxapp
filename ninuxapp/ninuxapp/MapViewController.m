@@ -836,6 +836,12 @@
     }
 }
 
+-(void) setMapType:(NSUInteger)type{
+    NSLog(@"Changing map type..");
+    [map setMapType:type];
+    [map setNeedsLayout];
+}
+
 -(void)saveSettings{
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	[prefs setDouble:lastMapUpdate forKey:@"lastMapUpdate"];
