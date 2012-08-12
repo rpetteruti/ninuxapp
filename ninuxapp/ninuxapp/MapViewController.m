@@ -331,11 +331,14 @@
 
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    customPin *tappedPin = annotation;
+    NSString *nodeName = tappedPin.associatedNode.nodeName;
+    NSLog(@"Visualizzo annotazione: %@",nodeName);
     
     
-    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"SFAnnotationIdentifier"];
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:nodeName];
     if(!annotationView) {   
-        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"SFAnnotationIdentifier"];
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nodeName];
         //annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeCustom];
         //[(UIButton*) annotationView.rightCalloutAccessoryView setBackgroundImage:[UIImage imageNamed: @"pulsante_links_tondo.png"] forState:UIControlStateNormal];
         
@@ -395,11 +398,16 @@
     customPin *tappedPin = view.annotation;
     
     touchedNode= tappedPin.associatedNode;
-    
+    NSLog(@" NODO DI TIPO: %@",tappedPin.associatedNode.type);
     [self doLookForLinks];
 
 }
 
+
+-(void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+    customPin *tappedPin = view.annotation;
+    NSLog(@" NODO DI TIPO: %@",tappedPin.associatedNode.type);
+}
 
 -(IBAction)findNode:(id) sender{
     
