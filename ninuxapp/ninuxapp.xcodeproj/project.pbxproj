@@ -10,27 +10,8 @@
 		4237B12815D65909009C8F25 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 429854C615B853E30055D2F4 /* MapViewController.xib */; };
 		4237B21E15D65CE1009C8F25 /* news.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B21C15D65CE1009C8F25 /* news.png */; };
 		4237B21F15D65CE1009C8F25 /* news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B21D15D65CE1009C8F25 /* news@2x.png */; };
-		4237B22215D66197009C8F25 /* links.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22015D66197009C8F25 /* links.png */; };
-		4237B22315D66197009C8F25 /* links@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22115D66197009C8F25 /* links@2x.png */; };
-		4237B22915D662F3009C8F25 /* NodeAnnotation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22815D662F3009C8F25 /* NodeAnnotation.xib */; };
-		4237B22B15D66428009C8F25 /* logo_ninux.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22A15D66428009C8F25 /* logo_ninux.png */; };
-		4237B23515D66AC4009C8F25 /* NodeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237B23415D66AC4009C8F25 /* NodeAnnotation.m */; };
-		4237B23715D66FAB009C8F25 /* logo_ninux_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B23615D66FAB009C8F25 /* logo_ninux_pic.png */; };
-		4237B24615D68A90009C8F25 /* Sweep.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24515D68A90009C8F25 /* Sweep.png */; };
-		4237B24815D68F62009C8F25 /* links_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24715D68F61009C8F25 /* links_pic.png */; };
-		4237B25115D6E017009C8F25 /* square_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B25015D6E017009C8F25 /* square_back@2x.png */; };
 		4237B25615D6E35C009C8F25 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237B24E15D6DEC1009C8F25 /* InfoViewController.m */; };
-		4237B25915D6E4F8009C8F25 /* e-mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B25715D6E4F7009C8F25 /* e-mail.png */; };
-		4237B25A15D6E4F8009C8F25 /* e-mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B25815D6E4F8009C8F25 /* e-mail@2x.png */; };
 		4237B25B15D6E54C009C8F25 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24F15D6DEC2009C8F25 /* InfoViewController.xib */; };
-		4237B26415D6E6E8009C8F25 /* maila@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26015D6E6DC009C8F25 /* maila@2x.png */; };
-		4237B26515D6E6E8009C8F25 /* maila.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26115D6E6DD009C8F25 /* maila.png */; };
-		4237B26615D6E6E8009C8F25 /* wikia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26215D6E6DF009C8F25 /* wikia@2x.png */; };
-		4237B26715D6E6E8009C8F25 /* wikia.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26315D6E6E3009C8F25 /* wikia.png */; };
-		4237B26915D6E794009C8F25 /* logo_ninux@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26815D6E793009C8F25 /* logo_ninux@2x.png */; };
-		4237B26D15D6ED85009C8F25 /* MapOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237B26B15D6ED83009C8F25 /* MapOptionsViewController.m */; };
-		4237B26E15D6ED85009C8F25 /* MapOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26C15D6ED84009C8F25 /* MapOptionsViewController.xib */; };
-		4237B27415D6F611009C8F25 /* Page_curl.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B27315D6F611009C8F25 /* Page_curl.png */; };
 		429854CA15B856720055D2F4 /* MapNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 429854C915B856720055D2F4 /* MapNode.m */; };
 		42AA28B515B870F70066CD83 /* nodes.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 42AA28B415B870F70066CD83 /* nodes.sqlite */; };
 		42C0BA2E1587E1C30054C43F /* 73-radar.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA251587E1C30054C43F /* 73-radar.png */; };
@@ -63,6 +44,8 @@
 		B519BED8155ECEB500B3EC92 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = B519BECC155ECEB500B3EC92 /* SBJsonWriter.m */; };
 		B541E5711587E5C700207BCB /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA3A1587E1DB0054C43F /* HUDView.xib */; };
 		B541E5731587E5CF00207BCB /* MapVisualizationOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA3D1587E20A0054C43F /* MapVisualizationOptionsViewController.xib */; };
+		B56DC1F915D7BB76009F9F4C /* MapOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26C15D6ED84009C8F25 /* MapOptionsViewController.xib */; };
+		B56DC1FB15D7BCA5009F9F4C /* MapOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237B26B15D6ED83009C8F25 /* MapOptionsViewController.m */; };
 		B5912EE515D6717000A7676F /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5912EE315D6717000A7676F /* ArticleCell.m */; };
 		B5912EE615D6717000A7676F /* ArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5912EE415D6717000A7676F /* ArticleCell.xib */; };
 		B5912EEF15D671EE00A7676F /* UILabel+VerticalAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = B5912EEE15D671EE00A7676F /* UILabel+VerticalAlign.m */; };
@@ -96,8 +79,6 @@
 		4237B22115D66197009C8F25 /* links@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "links@2x.png"; sourceTree = "<group>"; };
 		4237B22815D662F3009C8F25 /* NodeAnnotation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeAnnotation.xib; sourceTree = "<group>"; };
 		4237B22A15D66428009C8F25 /* logo_ninux.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ninux.png; sourceTree = "<group>"; };
-		4237B23315D66AC4009C8F25 /* NodeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeAnnotation.h; sourceTree = "<group>"; };
-		4237B23415D66AC4009C8F25 /* NodeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeAnnotation.m; sourceTree = "<group>"; };
 		4237B23615D66FAB009C8F25 /* logo_ninux_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ninux_pic.png; sourceTree = "<group>"; };
 		4237B24515D68A90009C8F25 /* Sweep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sweep.png; sourceTree = "<group>"; };
 		4237B24715D68F61009C8F25 /* links_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = links_pic.png; sourceTree = "<group>"; };
@@ -477,6 +458,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56DC1F915D7BB76009F9F4C /* MapOptionsViewController.xib in Resources */,
 				4237B25B15D6E54C009C8F25 /* InfoViewController.xib in Resources */,
 				B5C22134155E9E4E0065E0CD /* InfoPlist.strings in Resources */,
 				B5C2213F155E9E4E0065E0CD /* first.png in Resources */,
@@ -518,6 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56DC1FB15D7BCA5009F9F4C /* MapOptionsViewController.m in Sources */,
 				4237B25615D6E35C009C8F25 /* InfoViewController.m in Sources */,
 				B5C22136155E9E4E0065E0CD /* main.m in Sources */,
 				B5C2213A155E9E4E0065E0CD /* AppDelegate.m in Sources */,
