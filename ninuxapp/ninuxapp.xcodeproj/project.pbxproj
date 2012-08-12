@@ -18,6 +18,19 @@
 		4237B23715D66FAB009C8F25 /* logo_ninux_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B23615D66FAB009C8F25 /* logo_ninux_pic.png */; };
 		4237B24615D68A90009C8F25 /* Sweep.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24515D68A90009C8F25 /* Sweep.png */; };
 		4237B24815D68F62009C8F25 /* links_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24715D68F61009C8F25 /* links_pic.png */; };
+		4237B25115D6E017009C8F25 /* square_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B25015D6E017009C8F25 /* square_back@2x.png */; };
+		4237B25615D6E35C009C8F25 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237B24E15D6DEC1009C8F25 /* InfoViewController.m */; };
+		4237B25915D6E4F8009C8F25 /* e-mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B25715D6E4F7009C8F25 /* e-mail.png */; };
+		4237B25A15D6E4F8009C8F25 /* e-mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B25815D6E4F8009C8F25 /* e-mail@2x.png */; };
+		4237B25B15D6E54C009C8F25 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24F15D6DEC2009C8F25 /* InfoViewController.xib */; };
+		4237B26415D6E6E8009C8F25 /* maila@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26015D6E6DC009C8F25 /* maila@2x.png */; };
+		4237B26515D6E6E8009C8F25 /* maila.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26115D6E6DD009C8F25 /* maila.png */; };
+		4237B26615D6E6E8009C8F25 /* wikia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26215D6E6DF009C8F25 /* wikia@2x.png */; };
+		4237B26715D6E6E8009C8F25 /* wikia.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26315D6E6E3009C8F25 /* wikia.png */; };
+		4237B26915D6E794009C8F25 /* logo_ninux@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26815D6E793009C8F25 /* logo_ninux@2x.png */; };
+		4237B26D15D6ED85009C8F25 /* MapOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237B26B15D6ED83009C8F25 /* MapOptionsViewController.m */; };
+		4237B26E15D6ED85009C8F25 /* MapOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26C15D6ED84009C8F25 /* MapOptionsViewController.xib */; };
+		4237B27415D6F611009C8F25 /* Page_curl.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B27315D6F611009C8F25 /* Page_curl.png */; };
 		429854CA15B856720055D2F4 /* MapNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 429854C915B856720055D2F4 /* MapNode.m */; };
 		42AA28B515B870F70066CD83 /* nodes.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 42AA28B415B870F70066CD83 /* nodes.sqlite */; };
 		42C0BA2E1587E1C30054C43F /* 73-radar.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA251587E1C30054C43F /* 73-radar.png */; };
@@ -82,6 +95,21 @@
 		4237B23615D66FAB009C8F25 /* logo_ninux_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ninux_pic.png; sourceTree = "<group>"; };
 		4237B24515D68A90009C8F25 /* Sweep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sweep.png; sourceTree = "<group>"; };
 		4237B24715D68F61009C8F25 /* links_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = links_pic.png; sourceTree = "<group>"; };
+		4237B24D15D6DEC1009C8F25 /* InfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		4237B24E15D6DEC1009C8F25 /* InfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		4237B24F15D6DEC2009C8F25 /* InfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
+		4237B25015D6E017009C8F25 /* square_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square_back@2x.png"; sourceTree = "<group>"; };
+		4237B25715D6E4F7009C8F25 /* e-mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "e-mail.png"; sourceTree = "<group>"; };
+		4237B25815D6E4F8009C8F25 /* e-mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "e-mail@2x.png"; sourceTree = "<group>"; };
+		4237B26015D6E6DC009C8F25 /* maila@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maila@2x.png"; sourceTree = "<group>"; };
+		4237B26115D6E6DD009C8F25 /* maila.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maila.png; sourceTree = "<group>"; };
+		4237B26215D6E6DF009C8F25 /* wikia@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wikia@2x.png"; sourceTree = "<group>"; };
+		4237B26315D6E6E3009C8F25 /* wikia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wikia.png; sourceTree = "<group>"; };
+		4237B26815D6E793009C8F25 /* logo_ninux@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_ninux@2x.png"; sourceTree = "<group>"; };
+		4237B26A15D6ED83009C8F25 /* MapOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOptionsViewController.h; sourceTree = "<group>"; };
+		4237B26B15D6ED83009C8F25 /* MapOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOptionsViewController.m; sourceTree = "<group>"; };
+		4237B26C15D6ED84009C8F25 /* MapOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapOptionsViewController.xib; sourceTree = "<group>"; };
+		4237B27315D6F611009C8F25 /* Page_curl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Page_curl.png; sourceTree = "<group>"; };
 		429854C615B853E30055D2F4 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		429854C815B856710055D2F4 /* MapNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNode.h; sourceTree = "<group>"; };
 		429854C915B856720055D2F4 /* MapNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapNode.m; sourceTree = "<group>"; };
@@ -190,6 +218,12 @@
 				42C0BA581587EFE30054C43F /* FeedReaderViewController.m */,
 				42C0BA5A1587EFE30054C43F /* MapViewController.h */,
 				42C0BA5B1587EFE30054C43F /* MapViewController.m */,
+				4237B24D15D6DEC1009C8F25 /* InfoViewController.h */,
+				4237B24E15D6DEC1009C8F25 /* InfoViewController.m */,
+				4237B24F15D6DEC2009C8F25 /* InfoViewController.xib */,
+				4237B26A15D6ED83009C8F25 /* MapOptionsViewController.h */,
+				4237B26B15D6ED83009C8F25 /* MapOptionsViewController.m */,
+				4237B26C15D6ED84009C8F25 /* MapOptionsViewController.xib */,
 				42C0BA491587E40A0054C43F /* UI */,
 				42C0BA481587E3FF0054C43F /* HUD */,
 				42C0BA441587E3990054C43F /* MapVisualizationViewController.h */,
@@ -227,12 +261,20 @@
 		42C0BA4A1587E4400054C43F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4237B27315D6F611009C8F25 /* Page_curl.png */,
 				B5B8AB0C158D001300402E06 /* map */,
 				B5C2213E155E9E4E0065E0CD /* first.png */,
+				4237B26015D6E6DC009C8F25 /* maila@2x.png */,
+				4237B26115D6E6DD009C8F25 /* maila.png */,
+				4237B26215D6E6DF009C8F25 /* wikia@2x.png */,
+				4237B26315D6E6E3009C8F25 /* wikia.png */,
+				4237B25715D6E4F7009C8F25 /* e-mail.png */,
+				4237B25815D6E4F8009C8F25 /* e-mail@2x.png */,
 				4237B23615D66FAB009C8F25 /* logo_ninux_pic.png */,
 				4237B24715D68F61009C8F25 /* links_pic.png */,
 				B5C22140155E9E4E0065E0CD /* first@2x.png */,
 				4237B24515D68A90009C8F25 /* Sweep.png */,
+				4237B26815D6E793009C8F25 /* logo_ninux@2x.png */,
 				4237B22A15D66428009C8F25 /* logo_ninux.png */,
 				42C0BA251587E1C30054C43F /* 73-radar.png */,
 				4237B22015D66197009C8F25 /* links.png */,
@@ -288,6 +330,7 @@
 		B5B8AB0C158D001300402E06 /* map */ = {
 			isa = PBXGroup;
 			children = (
+				4237B25015D6E017009C8F25 /* square_back@2x.png */,
 				B5B8AB0D158D002700402E06 /* RedMapPin.png */,
 				B5B8AB0F158D036000402E06 /* marker_active.png */,
 				B5B8AB11158D05E500402E06 /* marker_potential.png */,
@@ -404,6 +447,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4237B25B15D6E54C009C8F25 /* InfoViewController.xib in Resources */,
 				B5C22134155E9E4E0065E0CD /* InfoPlist.strings in Resources */,
 				B5C2213F155E9E4E0065E0CD /* first.png in Resources */,
 				B5C22141155E9E4E0065E0CD /* first@2x.png in Resources */,
@@ -438,6 +482,16 @@
 				4237B23715D66FAB009C8F25 /* logo_ninux_pic.png in Resources */,
 				4237B24615D68A90009C8F25 /* Sweep.png in Resources */,
 				4237B24815D68F62009C8F25 /* links_pic.png in Resources */,
+				4237B25115D6E017009C8F25 /* square_back@2x.png in Resources */,
+				4237B25915D6E4F8009C8F25 /* e-mail.png in Resources */,
+				4237B25A15D6E4F8009C8F25 /* e-mail@2x.png in Resources */,
+				4237B26415D6E6E8009C8F25 /* maila@2x.png in Resources */,
+				4237B26515D6E6E8009C8F25 /* maila.png in Resources */,
+				4237B26615D6E6E8009C8F25 /* wikia@2x.png in Resources */,
+				4237B26715D6E6E8009C8F25 /* wikia.png in Resources */,
+				4237B26915D6E794009C8F25 /* logo_ninux@2x.png in Resources */,
+				4237B26E15D6ED85009C8F25 /* MapOptionsViewController.xib in Resources */,
+				4237B27415D6F611009C8F25 /* Page_curl.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4237B25615D6E35C009C8F25 /* InfoViewController.m in Sources */,
 				B5C22136155E9E4E0065E0CD /* main.m in Sources */,
 				B5C2213A155E9E4E0065E0CD /* AppDelegate.m in Sources */,
 				B519BECD155ECEB500B3EC92 /* NSObject+SBJson.m in Sources */,
@@ -469,6 +524,7 @@
 				429854CA15B856720055D2F4 /* MapNode.m in Sources */,
 				42D3712F15B86C6700D7F4E3 /* SearchResultsCell.m in Sources */,
 				4237B23515D66AC4009C8F25 /* NodeAnnotation.m in Sources */,
+				4237B26D15D6ED85009C8F25 /* MapOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

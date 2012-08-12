@@ -57,7 +57,6 @@
     
     
     
-    
     //[map setCenterCoordinate:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:13 animated:YES];
     
     
@@ -635,7 +634,12 @@
 
 
 
-
+-(IBAction)doCurl{
+    MapOptionsViewController *opt = [[MapOptionsViewController alloc]initWithNibName:@"MapOptionsViewController" bundle:nil];
+    opt.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    opt.hidesBottomBarWhenPushed=YES;
+    [self presentModalViewController:opt animated:YES];
+}
 
 
 
