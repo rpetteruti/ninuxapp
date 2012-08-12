@@ -15,6 +15,7 @@
 #import "SearchResultsCell.h"
 #import "MapOptionsViewController.h"
 #define pathDB @"nodes.sqlite"
+#define timeOutdatedMap 86400.0
 
 @protocol MapOptionsDelegate <NSObject>
 @required
@@ -33,6 +34,9 @@
     //CLLocationCoordinate2D *linksArray;
     MapNode *touchedNode;
     IBOutlet UIButton *clearLinks;
+    
+    NSTimer *myTimer;
+    double lastMapUpdate;
     
 }
 
