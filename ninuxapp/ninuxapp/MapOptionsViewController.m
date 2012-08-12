@@ -8,11 +8,12 @@
 
 #import "MapOptionsViewController.h"
 
-@interface MapOptionsViewController ()
 
-@end
 
 @implementation MapOptionsViewController
+
+
+@synthesize segmentedControl,delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +28,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+     NSLog(@"BLAH");
+    [segmentedControl addTarget:self
+                         action:@selector(valueChanged)
+               forControlEvents:UIControlEventValueChanged];
+    
+    [segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
 }
 
 - (void)viewDidUnload
@@ -40,5 +49,12 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
+-(IBAction)valueChanged{
+    NSLog(@"Telling delegate to change map type to %u ...",[segmentedControl selectedSegmentIndex]);
+    [self.delegate setMapType:[segmentedControl selectedSegmentIndex]];
+}
+
 
 @end

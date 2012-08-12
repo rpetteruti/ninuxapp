@@ -16,12 +16,9 @@
 #import "MapOptionsViewController.h"
 #define pathDB @"nodes.sqlite"
 
-@protocol MapOptionsDelegate <NSObject>
-@required
-- (void) setMapType:(int)type;
-@end
 
-@interface MapViewController : UIViewController <UISearchDisplayDelegate, UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,MKMapViewDelegate> {
+
+@interface MapViewController : UIViewController <UISearchDisplayDelegate, UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,MKMapViewDelegate,MapOptionsDelegate> {
     sqlite3 *database;
     IBOutlet MKMapView *map;
     NSString *writableDBPath;
@@ -34,6 +31,7 @@
     MapNode *touchedNode;
     IBOutlet UIButton *clearLinks;
     
+    
 }
 
 
@@ -44,7 +42,7 @@
 @property (nonatomic, retain) MapNode *touchedNode;
 @property (nonatomic, retain) IBOutlet UIButton *clearLinks;
 
-@property (nonatomic, assign) id <MapOptionsDelegate> delegate;
+
 
 -(IBAction)reloadTable:(id)sender;
 -(IBAction)findNode:(id) sender;
@@ -52,5 +50,6 @@
 -(IBAction)doLookForLinks:(id)sender;
 -(IBAction)doClearLinks:(id)sender;
 -(void) displayLinkLines;
+-(void) setMapType:(NSUInteger)type;
 
 @end
