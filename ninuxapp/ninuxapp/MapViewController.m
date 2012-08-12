@@ -16,7 +16,7 @@
 
 
 @implementation MapViewController
-@synthesize resultsArray,tmpCell,polyline,linksArray;
+@synthesize resultsArray,tmpCell,polyline,linksArray,touchedNode,clearLinks;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,11 +31,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [clearLinks setHidden:YES];
     [self zoomOnCoord:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:0.2];
+    
     resultsArray = [[NSMutableArray alloc] init];
     linksArray = [[NSMutableArray alloc] init];
     self.searchDisplayController.searchResultsTableView.separatorStyle= UITableViewCellSeparatorStyleNone;
-    self.searchDisplayController.searchResultsTableView.backgroundColor = [UIColor clearColor];
+    
+    self.searchDisplayController.searchResultsTableView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+   
     
     
     NSLog(@"Start populating map...");
@@ -48,7 +52,6 @@
     [self zoomOnCoord:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:0.2];
     //[map setCenterCoordinate:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:13 animated:YES];
 	[self performSelectorInBackground:@selector(populateMapFromDB) withObject:nil];//TODO ora carica da db, dopo bisognerà chiamare populateMap
-    
     
     
     
@@ -328,31 +331,53 @@
 
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    customPin *tappedPin = annotation;
+    NSString *nodeName = tappedPin.associatedNode.nodeName;
+    NSLog(@"Visualizzo annotazione: %@",nodeName);
     
     
-    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"SFAnnotationIdentifier"];
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:nodeName];
     if(!annotationView) {   
-        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"SFAnnotationIdentifier"];
-        annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nodeName];
+        //annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeCustom];
+        //[(UIButton*) annotationView.rightCalloutAccessoryView setBackgroundImage:[UIImage imageNamed: @"pulsante_links_tondo.png"] forState:UIControlStateNormal];
+        
+        
+        UIButton *sampleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [sampleButton setFrame:CGRectMake(0, 0,100,36)];
+        //[sampleButton setTitle:@"Button Title" forState:UIControlStateNormal];
+        //[sampleButton setFont:[UIFont boldSystemFontOfSize:20]];
+       
+        [sampleButton setBackgroundImage:[[UIImage imageNamed:@"links_pic.png"] stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0] forState:UIControlStateNormal];
+       
+      
+        
+        annotationView.leftCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_ninux_pic.png"] ];
         
         customPin *tappedPin = annotation;
         
+     
+                
         UIImage *pinImage = [UIImage imageNamed:@"RedMapPin.png"];
         //NSLog(@"nodo di tipo ANNOTAZIONE %@",tappedPin.associatedNode.type);
         
         if ([tappedPin.associatedNode.type isEqualToString:@"active"]) {
             
             pinImage=[UIImage imageNamed:@"marker_active.png"];
+              annotationView.rightCalloutAccessoryView = sampleButton; 
         }else if ([tappedPin.associatedNode.type isEqualToString:@"potential"]) {
             pinImage=[UIImage imageNamed:@"marker_potential.png"];
         }else if ([tappedPin.associatedNode.type isEqualToString:@"hotspot"]) {
             pinImage=[UIImage imageNamed:@"marker_hotspot.png"];
+             annotationView.rightCalloutAccessoryView = sampleButton; 
         }
         
         annotationView.image = pinImage;
     }else {
         annotationView.annotation = annotation;
     }
+    
+
     
     annotationView.enabled = YES;
     annotationView.canShowCallout = YES;
@@ -370,8 +395,19 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     NSLog(@"Click on disclosure button in the pin");
+    customPin *tappedPin = view.annotation;
+    
+    touchedNode= tappedPin.associatedNode;
+    NSLog(@" NODO DI TIPO: %@",tappedPin.associatedNode.type);
+    [self doLookForLinks];
+
 }
 
+
+-(void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+    customPin *tappedPin = view.annotation;
+    NSLog(@" NODO DI TIPO: %@",tappedPin.associatedNode.type);
+}
 
 -(IBAction)findNode:(id) sender{
     
@@ -401,15 +437,15 @@
 }
 
 
--(IBAction)doLookForLinks:(id)sender{
-    UIButton *buttonPressed = (UIButton *) sender;
-    int row = [buttonPressed superview].tag;
+-(IBAction)doLookForLinks{
+    //UIButton *buttonPressed = (UIButton *) sender;
+    //int row = [buttonPressed superview].tag;
     
-    MapNode *node =[resultsArray objectAtIndex:row];
+    //MapNode *node =[resultsArray objectAtIndex:row];
     //NSLog(@"node.name: %@ , latitanji:%f longitanji: %f",node.nodeName,node.coords.latitude,node.coords.longitude);
     
     
-    [self findLinksFromCoordinate:node.coords];
+    [self findLinksFromCoordinate:touchedNode.coords];
     
 }
 
@@ -458,7 +494,7 @@
             NSLog(@"NUMERO RIGHE: %d",i);
         }
     }
-   else{
+   if(i==0){
     sqlSearch = [NSString stringWithFormat:@"SELECT to_lat,to_lng FROM links WHERE from_lat = '%f' AND from_lng = '%f'",lati,longi];
     NSLog(@"Search query:%@",sqlSearch);
     sql = [sqlSearch UTF8String];
@@ -482,16 +518,30 @@
                 [linksArray addObject:linkLine];       
                 NSLog(@"ARRAY DEI LINK:\n %@",linksArray);
                
-                        
+                NSLog(@"Disegno la linea: ( %f,%f : %f,%f )",lati,longi,latdeg,londeg);
+                //[map setNeedsDisplay];
+                
+                
+                i++;
             }
+            NSLog(@"NUMERO RIGHE SECONDA QUERY: %d",i);
         }
     }
     }
+    [self zoomOnCoord:coord zoomLevel:0.0];
      [self displayLinkLines];
 }
 
 
-
+- (IBAction)doClearLinks:(id)sender  {
+    [map removeOverlays:map.overlays];
+    [linksArray removeAllObjects];
+    [clearLinks setHidden:YES];
+    [map deselectAnnotation:[map.selectedAnnotations objectAtIndex:0] animated:YES];
+     [self zoomOnCoord:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:0.1];
+    
+    
+}
 
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id < MKOverlay >)overlay{
@@ -511,7 +561,8 @@
 
 -(void) displayLinkLines{
     [self.searchDisplayController setActive:NO];
-    //[self zoomOnCoord:ann.coordinate zoomLevel:0.0];
+    
+    
  
     int i=0;
         for(MKPolyline *poly in linksArray){
@@ -523,7 +574,7 @@
           
                 
                 [map setNeedsDisplay];
-               
+    [clearLinks setHidden: NO];          
           
     
 }
@@ -591,7 +642,12 @@
 
 
 
-
+-(IBAction)doCurl{
+    MapOptionsViewController *opt = [[MapOptionsViewController alloc]initWithNibName:@"MapOptionsViewController" bundle:nil];
+    opt.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    opt.hidesBottomBarWhenPushed=YES;
+    [self presentModalViewController:opt animated:YES];
+}
 
 
 
