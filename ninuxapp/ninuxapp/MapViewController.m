@@ -9,14 +9,16 @@
 #import "MapViewController.h"
 #import "SBJson.h"
 #import "customPin.h"
+#import <CoreLocation/CoreLocation.h>
 
-
+#define MERCATOR_RADIUS 85445659.44705395
+#define MAX_GOOGLE_LEVELS 20
 
 
 
 
 @implementation MapViewController
-@synthesize resultsArray,tmpCell,polyline,linksArray,touchedNode,clearLinks;
+@synthesize resultsArray,tmpCell,polyline,linksArray,touchedNode,clearLinks,hud;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +36,14 @@
     [self loadSettings];//
     [clearLinks setHidden:YES];
     [self zoomOnCoord:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:0.2];
+    
+    [[NSBundle mainBundle] loadNibNamed:@"LoadingHUD" owner:self options:nil];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"LoadingHUD" owner:self options:nil];
+    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
+    hud = [topLevelObjects objectAtIndex:0];
+    
+    
+    
     
     resultsArray = [[NSMutableArray alloc] init];
     linksArray = [[NSMutableArray alloc] init];
@@ -57,11 +67,13 @@
     CFTimeInterval now = CFAbsoluteTimeGetCurrent();
     if (( now - lastMapUpdate) <timeOutdatedMap) {
         NSLog(@"Load nodes from DB");
-        [self performSelectorInBackground:@selector(populateMapFromDB) withObject:nil];//load nodes from local db
+       // [self performSelectorInBackground:@selector(populateMapFromDB) withObject:nil];//load nodes from local db
+        [self performSelectorOnMainThread:@selector(populateMapFromDB) withObject:nil waitUntilDone:NO];
         
     } else{
         NSLog(@"Load nodes from Server");
         [self performSelectorInBackground:@selector(populateMap) withObject:nil];//need to download nodes from server
+        //[self performSelectorOnMainThread:@selector(populateMap) withObject:nil waitUntilDone:NO];
         lastMapUpdate = CFAbsoluteTimeGetCurrent();
         [self saveSettings];
     }
@@ -85,10 +97,10 @@
 }
 
 -(void) zoomOnCoord:(CLLocationCoordinate2D)annotationCoord zoomLevel:(float) zoomLevel{
-    
+    NSLog(@"Current zoomLevel: %f",[self getZoomLevel]);
     NSLog(@"ZoomLevel: %f",zoomLevel);
     if (zoomLevel<0.1)zoomLevel = zoomLevel+0.03;//evito di zoomare troppo
-    
+    //if([self getZoomLevel] > 10.0 ) return;
     
     MKCoordinateSpan span;
     span.latitudeDelta=zoomLevel;
@@ -102,8 +114,21 @@
     
     [map setRegion:region animated:TRUE];
     [map regionThatFits:region];
+    NSLog(@"Final zoomLevel: %f",[self getZoomLevel]);
 }
 
+
+
+- (double)getZoomLevel
+{
+    CLLocationDegrees longitudeDelta = map.region.span.longitudeDelta;
+    CGFloat mapWidthInPixels = self.view.bounds.size.width;
+    double zoomScale = longitudeDelta * MERCATOR_RADIUS * M_PI / (180.0 * mapWidthInPixels);
+    double zoomer = MAX_GOOGLE_LEVELS - log2( zoomScale );
+    if ( zoomer < 0 ) zoomer = 0;
+    //  zoomer = round(zoomer);
+    return zoomer;
+}
 
 
 
@@ -182,11 +207,11 @@
     NSLog(@"Called searchBarTextDidEndEditing");
     // [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(searchNodes:) object:searchText];
     
-    NSString *toBeSearched= [searchBar text];
+  /*  NSString *toBeSearched= [searchBar text];
     if([toBeSearched length]>0){
         
         [self searchNodes:toBeSearched];
-    }
+    }*/
     //[self performSelector:@selector(searchNodes:) withObject:[searchBar text] afterDelay:0.0];
     
     
@@ -219,20 +244,23 @@
 -(void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
     //serve per non far cambiare la grafica della tableview quando l'utente clicca su cancel o su x
     tableView.separatorStyle= UITableViewCellSeparatorStyleNone;
-	tableView.backgroundColor=[UIColor clearColor];
+	tableView.backgroundColor=[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+
     
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    /* [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(searchNodes:) object:searchText];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(searchNodes:) object:searchText];
+    [resultsArray removeAllObjects];
+    [self.searchDisplayController.searchResultsTableView reloadData];
+     
      
      NSLog(@"Search bar:%@",searchText);
      
-     [self performSelector:@selector(searchNodes:) withObject:searchText afterDelay:1.5];
-     */
-    [resultsArray removeAllObjects];
-    [self.searchDisplayController.searchResultsTableView reloadData];
+     [self performSelector:@selector(searchNodes:) withObject:searchText afterDelay:0];
+     
+ 
     
     
 }
@@ -286,6 +314,12 @@
 
 
 -(void)populateMapFromDB{
+    
+    //initializing hud
+    
+    [self.view addSubview:hud];
+    
+    
     int i=0;
     sqlite3_stmt *selectstmt;
 	const char *sql = "select name,lat,lng,type from nodes";
@@ -327,7 +361,15 @@
                 
                 annotationPoint.coordinate = annotationCoord;
                 annotationPoint.title = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 0)];
-                annotationPoint.subtitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
+                
+                NSString *tipo = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 3)];
+                
+                if([tipo isEqualToString:@"active"]) annotationPoint.subtitle = @"attivo";
+                else if([tipo isEqualToString:@"hotspot"]) annotationPoint.subtitle = @"hotspot";
+                else annotationPoint.subtitle = @"potenziale";
+                
+                
+                //[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
                 
                 [map addAnnotation:annotationPoint];
                 //NSLog(@"added");
@@ -343,6 +385,8 @@
 
 
 -(void) populateMap{
+    [self.view addSubview:hud];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self createEditableCopyOfDatabaseIfNeeded];//check if i need to create a writable file of the sqlite database
     NSError* error = nil;
     NSString *rawJson = [NSString stringWithContentsOfURL:[NSURL URLWithString: @"http://map.ninux.org/nodes.json"] encoding:NSASCIIStringEncoding error:&error];
@@ -476,7 +520,7 @@
     }
     NSLog(@"Number of nodes: %i",count);
     NSLog(@"VOLTE: %d",numVolte);
-    [self populateMapFromDB];
+    [self performSelectorOnMainThread:@selector(populateMapFromDB) withObject:nil waitUntilDone:YES];
 }
 
 - (void)createEditableCopyOfDatabaseIfNeeded
@@ -501,7 +545,7 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     customPin *tappedPin = annotation;
     NSString *nodeName = tappedPin.associatedNode.nodeName;
-    NSLog(@"Visualizzo annotazione: %@",nodeName);
+    //NSLog(@"Visualizzo annotazione: %@",nodeName);
     
     
     MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:nodeName];
@@ -512,15 +556,15 @@
         
         
         UIButton *sampleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [sampleButton setFrame:CGRectMake(0, 0,100,36)];
+        [sampleButton setFrame:CGRectMake(0, 0,70,42)];
         //[sampleButton setTitle:@"Button Title" forState:UIControlStateNormal];
         //[sampleButton setFont:[UIFont boldSystemFontOfSize:20]];
         
-        [sampleButton setBackgroundImage:[[UIImage imageNamed:@"links_pic.png"] stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0] forState:UIControlStateNormal];
+        [sampleButton setBackgroundImage:[[UIImage imageNamed:@"linkbutton2.png"] stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0] forState:UIControlStateNormal];
         
         
         
-        annotationView.leftCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_ninux_pic.png"] ];
+        
         
         customPin *tappedPin = annotation;
         
@@ -530,13 +574,15 @@
         //NSLog(@"nodo di tipo ANNOTAZIONE %@",tappedPin.associatedNode.type);
         
         if ([tappedPin.associatedNode.type isEqualToString:@"active"]) {
-            
-            pinImage=[UIImage imageNamed:@"marker_active.png"];
+            annotationView.leftCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoact.png"] ];
+            pinImage=[UIImage imageNamed:@"marker_a.png"];
             annotationView.rightCalloutAccessoryView = sampleButton;
         }else if ([tappedPin.associatedNode.type isEqualToString:@"potential"]) {
-            pinImage=[UIImage imageNamed:@"marker_potential.png"];
+             annotationView.leftCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logopot.png"] ];
+            pinImage=[UIImage imageNamed:@"marker_p.png"];
         }else if ([tappedPin.associatedNode.type isEqualToString:@"hotspot"]) {
-            pinImage=[UIImage imageNamed:@"marker_hotspot.png"];
+             annotationView.leftCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logohot.png"] ];
+            pinImage=[UIImage imageNamed:@"marker_h.png"];
             annotationView.rightCalloutAccessoryView = sampleButton;
         }
         
@@ -559,6 +605,11 @@
 -(void) reloadMap
 {
     [map setRegion:map.region animated:TRUE];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [hud removeFromSuperview];
+    [map setNeedsLayout];
+    [map setNeedsDisplay];
+    [map reloadInputViews];
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
@@ -696,6 +747,8 @@
             }
         }
     }
+    
+    
     [self zoomOnCoord:coord zoomLevel:0.0];
     [self displayLinkLines];
 }
@@ -722,7 +775,7 @@
     MKPolylineView* lineView = [[MKPolylineView alloc] initWithPolyline:poly];
     lineView.fillColor = [UIColor greenColor];
     lineView.strokeColor = [UIColor greenColor];
-    lineView.lineWidth = 3;
+    lineView.lineWidth = 4;
     return lineView;
 }
 
@@ -815,6 +868,14 @@
     opt.delegate = self;
     opt.modalTransitionStyle = UIModalTransitionStylePartialCurl;
     opt.hidesBottomBarWhenPushed=YES;
+    
+   
+    MKMapType type = [map mapType];
+    
+    if (type == MKMapTypeStandard) opt.state=0;
+    else if (type == MKMapTypeSatellite) opt.state=1;
+    else opt.state=2;
+    
     [self presentModalViewController:opt animated:YES];
 }
 

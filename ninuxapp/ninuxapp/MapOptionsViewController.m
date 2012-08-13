@@ -13,7 +13,7 @@
 @implementation MapOptionsViewController
 
 
-@synthesize segmentedControl,delegate;
+@synthesize segmentedControl,delegate,state;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
      NSLog(@"BLAH");
+    [segmentedControl setSelectedSegmentIndex:state];
     [segmentedControl addTarget:self
                          action:@selector(valueChanged)
                forControlEvents:UIControlEventValueChanged];

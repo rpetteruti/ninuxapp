@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self.webView setDelegate:self];
-	
+	webView.scalesPageToFit = YES;  
 	
 	
 	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:articleURL]]];
@@ -43,8 +43,6 @@
 	
 	
 }
-
-
 
 
 
@@ -63,6 +61,10 @@
     
     // Release any cached data, images, etc. that aren't in use.
 }
+
+
+
+
 
 
 - (void)viewDidUnload {

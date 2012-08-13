@@ -7,7 +7,7 @@
 //
 
 #import "FeedReaderViewController.h"
-
+#import "AppDelegate.h"
 @interface FeedReaderViewController ()
 
 
@@ -17,6 +17,9 @@
 
 
 @implementation FeedReaderViewController
+
+
+@synthesize hud;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +40,15 @@
 	//NSLog(@"Sei nel tab: %@",indiceTab);
 	loading=NO;
 	loadingArticle=NO;
+    
+    //loading hud nib
+    
+    [[NSBundle mainBundle] loadNibNamed:@"LoadingHUD" owner:self options:nil];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"LoadingHUD" owner:self options:nil];
+    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
+    hud = [topLevelObjects objectAtIndex:0];
+    hud.alpha=1.0;
+    
     
 	UIButton* modalViewButton = [UIButton buttonWithType: UIButtonTypeCustom];
 	modalViewButton.bounds = CGRectMake(0, 0, 65.0, 30.0);
@@ -63,7 +75,7 @@
     // Add HUD to screen
     
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	
+	[self.view addSubview:hud];
 	
 	if ([stories count] == 0) {
 		
@@ -151,6 +163,9 @@
         NSLog(@"data: %@",date);
         data = [formatter stringFromDate:date];
         */
+        NSRange range = NSMakeRange(0, 16);
+        
+        data= [data substringWithRange:range];
         cell.titleLabel.text=[NSString stringWithFormat:@"%@",[[stories objectAtIndex: storyIndex] objectForKey: @"titolo"]];
 		text=[NSString stringWithFormat:@"Autore: %@\n%@",[[stories objectAtIndex: storyIndex] objectForKey: @"testo"],data];
         cell.textPreview.text=text;
@@ -207,16 +222,23 @@
 	[articlesTable setHidden:NO];
 	[articlesTable setUserInteractionEnabled:YES];
 	loading=FALSE;
-	
+	[hud removeFromSuperview];
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
 	
-	NSString * errorString = [NSString stringWithFormat:@"Impossibile ottenere le notizie. Riprovare piu tardi. (Codice errore %i )", [parseError code]];
+	NSString * errorString = [NSString stringWithFormat:@"Impossibile ottenere le notizie. Riprovare piu tardi. (Cod. errore %i)", [parseError code]];
 	NSLog(@"error parsing XML: %@", errorString);
 	
 	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Errore di caricamento" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[errorAlert show];
+ 
+	
+    AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDel.tabBarController setSelectedViewController:[appDel.tabBarController.viewControllers objectAtIndex:0]];
+    
+    
+    
+    [errorAlert show];
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{
@@ -351,7 +373,7 @@
 
     loadingArticle = NO;
     
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

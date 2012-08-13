@@ -20,12 +20,13 @@
 
     
 IBOutlet UISegmentedControl *segmentedControl;
+    NSInteger state;
 
 }
 
 @property (nonatomic, retain) UISegmentedControl *segmentedControl;
 @property (nonatomic, assign) id <MapOptionsDelegate> delegate;
-
+@property (nonatomic, assign) NSInteger state;
 
 -(IBAction) valueChanged;
 @end

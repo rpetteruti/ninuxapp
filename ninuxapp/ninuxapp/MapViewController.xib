@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1280</int>
+		<int key="IBDocument.SystemTarget">1296</int>
 		<string key="IBDocument.SystemVersion">11E53</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
 		<string key="IBDocument.AppKitVersion">1138.47</string>
@@ -49,7 +49,6 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBMKMapType">2</int>
 					</object>
 					<object class="IBUISearchBar" id="277345175">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -93,7 +92,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">Sweep.png</string>
+							<string key="NSResourceName">sweep.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="55801463">
 							<int key="type">2</int>
@@ -111,7 +110,6 @@
 						<string key="NSFrame">{{275, 355}, {36, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -125,7 +123,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="999652857"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">Page_curl.png</string>
+							<string key="NSResourceName">gear.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="55801463"/>
 						<reference key="IBUIFont" ref="1041758960"/>
@@ -267,9 +265,9 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="216677277"/>
-							<reference ref="661327229"/>
 							<reference ref="145155336"/>
 							<reference ref="277345175"/>
+							<reference ref="661327229"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -418,11 +416,15 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
+			<real value="1296" key="NS.object.0"/>
+		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="Page_curl.png">{86, 84}</string>
-			<string key="Sweep.png">{85, 84}</string>
+			<string key="gear.png">{36, 36}</string>
+			<string key="sweep.png">{36, 36}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

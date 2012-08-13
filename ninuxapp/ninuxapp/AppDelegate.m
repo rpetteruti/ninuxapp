@@ -27,7 +27,7 @@
     UIViewController *viewController2 = [[FeedReaderViewController alloc] initWithNibName:@"FeedReaderViewController" bundle:nil];
     UIViewController *viewController3 = [[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil];
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController2, viewController1,viewController3, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2,viewController3, nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];

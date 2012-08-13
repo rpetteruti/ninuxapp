@@ -14,6 +14,7 @@
 #import "MapNode.h"
 #import "SearchResultsCell.h"
 #import "MapOptionsViewController.h"
+#import "LoadingHUD.h"
 #define pathDB @"nodes.sqlite"
 #define timeOutdatedMap 86400.0
 
@@ -34,6 +35,7 @@
     
     NSTimer *myTimer;
     double lastMapUpdate;
+    LoadingHUD *hud;
     
 }
 
@@ -44,6 +46,7 @@
 @property (nonatomic, retain) MKPolyline *polyline;
 @property (nonatomic, retain) MapNode *touchedNode;
 @property (nonatomic, retain) IBOutlet UIButton *clearLinks;
+@property (nonatomic, retain) LoadingHUD *hud;
 
 
 

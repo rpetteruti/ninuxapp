@@ -10,6 +10,7 @@
 #import "ArticleCell.h"
 #import "UILabel+VerticalAlign.h"
 #import "ArticleWebViewController.h"
+#import "LoadingHUD.h"
 
 
 
@@ -42,11 +43,14 @@
 	int currentPage;
 	NSMutableString *maxPage;
     IBOutlet UITableView *articlesTable;
+    //UINavigationController *navController;
 	
 	    
 }
 
 @property (nonatomic,retain) IBOutlet ArticleCell *tmpCell;
+@property (nonatomic,retain) LoadingHUD *hud;
+//@property (nonatomic, retain) IBOutlet UINavigationController *navController;
 
 
 @property (nonatomic,retain) NSString *URLToOpenString;
