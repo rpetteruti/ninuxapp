@@ -42,6 +42,7 @@
 		4237B25B15D6E54C009C8F25 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24F15D6DEC2009C8F25 /* InfoViewController.xib */; };
 		429854CA15B856720055D2F4 /* MapNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 429854C915B856720055D2F4 /* MapNode.m */; };
 		42AA28B515B870F70066CD83 /* nodes.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 42AA28B415B870F70066CD83 /* nodes.sqlite */; };
+		42BA33E315D957E100B238A6 /* sweep.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BA33E215D957E100B238A6 /* sweep.png */; };
 		42C0BA2E1587E1C30054C43F /* 73-radar.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA251587E1C30054C43F /* 73-radar.png */; };
 		42C0BA2F1587E1C30054C43F /* 73-radar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA261587E1C30054C43F /* 73-radar@2x.png */; };
 		42C0BA301587E1C30054C43F /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA271587E1C30054C43F /* 103-map.png */; };
@@ -165,6 +166,7 @@
 		429854C815B856710055D2F4 /* MapNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNode.h; sourceTree = "<group>"; };
 		429854C915B856720055D2F4 /* MapNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapNode.m; sourceTree = "<group>"; };
 		42AA28B415B870F70066CD83 /* nodes.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = nodes.sqlite; sourceTree = "<group>"; };
+		42BA33E215D957E100B238A6 /* sweep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sweep.png; sourceTree = "<group>"; };
 		42C0BA251587E1C30054C43F /* 73-radar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "73-radar.png"; sourceTree = "<group>"; };
 		42C0BA261587E1C30054C43F /* 73-radar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "73-radar@2x.png"; sourceTree = "<group>"; };
 		42C0BA271587E1C30054C43F /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				4237B26215D6E6DF009C8F25 /* wikia@2x.png */,
 				4233AE1015D94601004056B5 /* linksbutton.png */,
 				4233AE1115D94601004056B5 /* linksbutton@2x.png */,
+				42BA33E215D957E100B238A6 /* sweep.png */,
 				4233ADCF15D918E7004056B5 /* sweep@2x.png */,
 				4233ADD015D918E7004056B5 /* gear.png */,
 				4233ADD115D918E7004056B5 /* gear@2x.png */,
@@ -611,6 +614,7 @@
 				4233AE1915D95109004056B5 /* icon_wood.png in Resources */,
 				4233AE1B15D952AE004056B5 /* icon_metal.png in Resources */,
 				4233AE1D15D9544C004056B5 /* iconabrushed.png in Resources */,
+				42BA33E315D957E100B238A6 /* sweep.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
