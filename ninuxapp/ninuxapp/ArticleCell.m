@@ -41,7 +41,7 @@
 
 -(void) setLabelFullSize{
 	
-	CGRect r = CGRectMake(12, 42, 287, 60);
+	CGRect r = CGRectMake(12, 38, 287, 60);
 	CGRect s = CGRectMake(12, 3, 287, 38);
 	
 	

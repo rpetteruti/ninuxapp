@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4233ADAC15D7CA60004056B5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4233ADAB15D7CA60004056B5 /* Default.png */; };
+		4233ADAF15D7CA63004056B5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4233ADAE15D7CA63004056B5 /* Default@2x.png */; };
 		4237B12815D65909009C8F25 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 429854C615B853E30055D2F4 /* MapViewController.xib */; };
 		4237B21E15D65CE1009C8F25 /* news.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B21C15D65CE1009C8F25 /* news.png */; };
 		4237B21F15D65CE1009C8F25 /* news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B21D15D65CE1009C8F25 /* news@2x.png */; };
@@ -73,6 +75,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4233ADAB15D7CA60004056B5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		4233ADAE15D7CA63004056B5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		4237B21C15D65CE1009C8F25 /* news.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news.png; sourceTree = "<group>"; };
 		4237B21D15D65CE1009C8F25 /* news@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news@2x.png"; sourceTree = "<group>"; };
 		4237B22015D66197009C8F25 /* links.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = links.png; sourceTree = "<group>"; };
@@ -256,6 +260,8 @@
 		42C0BA4A1587E4400054C43F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4233ADAE15D7CA63004056B5 /* Default@2x.png */,
+				4233ADAB15D7CA60004056B5 /* Default.png */,
 				4237B27315D6F611009C8F25 /* Page_curl.png */,
 				B5B8AB0C158D001300402E06 /* map */,
 				B5C2213E155E9E4E0065E0CD /* first.png */,
@@ -490,6 +496,8 @@
 				B5912EE615D6717000A7676F /* ArticleCell.xib in Resources */,
 				B5912EF415D6720300A7676F /* ArticleWebViewController.xib in Resources */,
 				B5912EF915D679A200A7676F /* cell-separator.png in Resources */,
+				4233ADAC15D7CA60004056B5 /* Default.png in Resources */,
+				4233ADAF15D7CA63004056B5 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,7 +605,7 @@
 				GCC_PREFIX_HEADER = "ninuxapp/ninuxapp-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "ninuxapp/ninuxapp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -611,7 +619,7 @@
 				GCC_PREFIX_HEADER = "ninuxapp/ninuxapp-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "ninuxapp/ninuxapp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

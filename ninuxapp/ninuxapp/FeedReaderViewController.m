@@ -114,8 +114,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	if(indexPath.row==[stories count] ) return 40.0;//readmore notiziario
-	else return 108.0;
+	//if(indexPath.row==[stories count] ) return 40.0;//readmore notiziario
+	 return 95.0;
 	
 }
 
@@ -143,8 +143,16 @@
         cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
         NSString *text=@" ";
         
+        NSString *data = [[stories objectAtIndex: storyIndex] objectForKey: @"data"];
+        /*NSLog(@"data: %@",data);
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        //[formatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"]; 
+        NSDate *date = [formatter dateFromString:data];
+        NSLog(@"data: %@",date);
+        data = [formatter stringFromDate:date];
+        */
         cell.titleLabel.text=[NSString stringWithFormat:@"%@",[[stories objectAtIndex: storyIndex] objectForKey: @"titolo"]];
-		text=[NSString stringWithFormat:@"Autore: %@\n%@",[[stories objectAtIndex: storyIndex] objectForKey: @"testo"],[[stories objectAtIndex: storyIndex] objectForKey: @"data"]];
+		text=[NSString stringWithFormat:@"Autore: %@\n%@",[[stories objectAtIndex: storyIndex] objectForKey: @"testo"],data];
         cell.textPreview.text=text;
 		[cell.textPreview alignTop];
     }
@@ -154,7 +162,8 @@
 		
 		
 		UIView* backgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ] ;
-		backgroundView.backgroundColor = [UIColor whiteColor];
+		//backgroundView.backgroundColor = [UIColor lightGrayColor];
+        backgroundView.backgroundColor = [UIColor colorWithRed:0.90 green:0.90 blue:0.90 alpha:0.9];
 		cell.backgroundView = backgroundView;
 		
 	}
