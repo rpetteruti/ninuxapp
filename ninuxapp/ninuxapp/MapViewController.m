@@ -763,7 +763,7 @@
             //NSLog(@"NUMERO RIGHE: %d",i);
         }
     }
-    if(i==0){
+   
         sqlSearch = [NSString stringWithFormat:@"SELECT to_lat,to_lng FROM links WHERE from_lat = '%f' AND from_lng = '%f'",lati,longi];
         NSLog(@"Search query:%@",sqlSearch);
         sql = [sqlSearch UTF8String];
@@ -796,7 +796,7 @@
                 //NSLog(@"NUMERO RIGHE SECONDA QUERY: %d",i);
             }
         }
-    }
+    
     
     
     [self zoomOnCoord:coord zoomLevel:0.0];
