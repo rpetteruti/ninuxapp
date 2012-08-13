@@ -9,5 +9,5 @@
 #import "MapNode.h"
 
 @implementation MapNode
-@synthesize nodeName,type,coords;
+@synthesize nodeName,type,coords,isInvolvedInLinks;
 @end

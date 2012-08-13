@@ -42,7 +42,7 @@
     // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
     hud = [topLevelObjects objectAtIndex:0];
     
-    
+    [self.view addSubview:hud];
     
     
     resultsArray = [[NSMutableArray alloc] init];
@@ -309,7 +309,49 @@
 }
 
 
-
+-(void) isInvolvedInLinks: (MapNode*) node{
+    int i=0;
+    sqlite3_stmt *selectstmt;
+    CLLocationCoordinate2D coords = node.coords;
+    
+    NSString *sqlSearch = [NSString stringWithFormat:@"SELECT from_lat,from_lng FROM links WHERE to_lat = '%f' AND to_lng = '%f'",coords.latitude,coords.longitude];
+    //NSLog(@"-> Checking if node %@ is involved in links....",node.nodeName);
+    const char *sql = [sqlSearch UTF8String];
+    if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
+        
+		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+			
+			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
+                
+                
+               
+                
+                i++;
+            }
+            
+        }
+    }
+    if(i==0){
+        sqlSearch = [NSString stringWithFormat:@"SELECT to_lat,to_lng FROM links WHERE from_lat = '%f' AND from_lng = '%f'",coords.latitude,coords.longitude];
+        NSLog(@"Search query:%@",sqlSearch);
+        sql = [sqlSearch UTF8String];
+        if (sqlite3_open([writableDBPath UTF8String], &database) == SQLITE_OK) {
+            
+            if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+                
+                while(sqlite3_step(selectstmt) == SQLITE_ROW) {
+                    
+                 
+                    
+                    i++;
+                }
+                //NSLog(@"NUMERO RIGHE SECONDA QUERY: %d",i);
+            }
+        }
+    }
+    if (i==0) node.isInvolvedInLinks=NO;
+    else node.isInvolvedInLinks=YES;
+}
 
 
 
@@ -346,6 +388,11 @@
                 node.type=[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 3)];
                 node.nodeName= annotationPoint.title = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 0)];
                 node.coords=annotationCoord;
+                
+                //check involved in links
+                if(![node.type isEqualToString:@"potential"]) 
+                [self performSelectorInBackground:@selector(isInvolvedInLinks:) withObject:node];
+               
                 
                 //NSLog(@"COORDINATE NODO: %f,%f",node.coords.latitude,node.coords.longitude);
                 
@@ -560,7 +607,7 @@
         //[sampleButton setTitle:@"Button Title" forState:UIControlStateNormal];
         //[sampleButton setFont:[UIFont boldSystemFontOfSize:20]];
         
-        [sampleButton setBackgroundImage:[[UIImage imageNamed:@"linkbutton2.png"] stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0] forState:UIControlStateNormal];
+        [sampleButton setBackgroundImage:[[UIImage imageNamed:@"linksbutton.png"] stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0] forState:UIControlStateNormal];
         
         
         
@@ -576,13 +623,16 @@
         if ([tappedPin.associatedNode.type isEqualToString:@"active"]) {
             annotationView.leftCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoact.png"] ];
             pinImage=[UIImage imageNamed:@"marker_a.png"];
+            if (tappedPin.associatedNode.isInvolvedInLinks)
             annotationView.rightCalloutAccessoryView = sampleButton;
+            
         }else if ([tappedPin.associatedNode.type isEqualToString:@"potential"]) {
              annotationView.leftCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logopot.png"] ];
             pinImage=[UIImage imageNamed:@"marker_p.png"];
         }else if ([tappedPin.associatedNode.type isEqualToString:@"hotspot"]) {
              annotationView.leftCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logohot.png"] ];
             pinImage=[UIImage imageNamed:@"marker_h.png"];
+            if (tappedPin.associatedNode.isInvolvedInLinks)
             annotationView.rightCalloutAccessoryView = sampleButton;
         }
         
@@ -710,7 +760,7 @@
                 
                 i++;
             }
-            NSLog(@"NUMERO RIGHE: %d",i);
+            //NSLog(@"NUMERO RIGHE: %d",i);
         }
     }
     if(i==0){
@@ -743,7 +793,7 @@
                     
                     i++;
                 }
-                NSLog(@"NUMERO RIGHE SECONDA QUERY: %d",i);
+                //NSLog(@"NUMERO RIGHE SECONDA QUERY: %d",i);
             }
         }
     }
@@ -775,7 +825,7 @@
     MKPolylineView* lineView = [[MKPolylineView alloc] initWithPolyline:poly];
     lineView.fillColor = [UIColor greenColor];
     lineView.strokeColor = [UIColor greenColor];
-    lineView.lineWidth = 4;
+    lineView.lineWidth = 6;
     return lineView;
 }
 

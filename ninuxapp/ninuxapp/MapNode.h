@@ -17,6 +17,7 @@
     
 }
 @property (nonatomic, retain) NSString *nodeName;
+@property (nonatomic, assign) BOOL isInvolvedInLinks;
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic) CLLocationCoordinate2D coords;
 
