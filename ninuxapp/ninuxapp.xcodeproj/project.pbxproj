@@ -11,7 +11,6 @@
 		4233ADAF15D7CA63004056B5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4233ADAE15D7CA63004056B5 /* Default@2x.png */; };
 		4233ADB615D8F560004056B5 /* LoadingHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4233ADB515D8F560004056B5 /* LoadingHUD.m */; };
 		4233ADB915D8F58B004056B5 /* LoadingHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4233ADB815D8F58B004056B5 /* LoadingHUD.xib */; };
-		4233ADD215D918E7004056B5 /* sweep.png in Resources */ = {isa = PBXBuildFile; fileRef = 4233ADCE15D918E7004056B5 /* sweep.png */; };
 		4233ADD315D918E7004056B5 /* sweep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4233ADCF15D918E7004056B5 /* sweep@2x.png */; };
 		4233ADD415D918E7004056B5 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 4233ADD015D918E7004056B5 /* gear.png */; };
 		4233ADD515D918E7004056B5 /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4233ADD115D918E7004056B5 /* gear@2x.png */; };
@@ -116,7 +115,6 @@
 		4233ADB415D8F560004056B5 /* LoadingHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingHUD.h; sourceTree = "<group>"; };
 		4233ADB515D8F560004056B5 /* LoadingHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingHUD.m; sourceTree = "<group>"; };
 		4233ADB815D8F58B004056B5 /* LoadingHUD.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingHUD.xib; sourceTree = "<group>"; };
-		4233ADCE15D918E7004056B5 /* sweep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sweep.png; sourceTree = "<group>"; };
 		4233ADCF15D918E7004056B5 /* sweep@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sweep@2x.png"; sourceTree = "<group>"; };
 		4233ADD015D918E7004056B5 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
 		4233ADD115D918E7004056B5 /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear@2x.png"; sourceTree = "<group>"; };
@@ -327,7 +325,6 @@
 				4237B26015D6E6DC009C8F25 /* maila@2x.png */,
 				4237B26115D6E6DD009C8F25 /* maila.png */,
 				4237B26215D6E6DF009C8F25 /* wikia@2x.png */,
-				4233ADCE15D918E7004056B5 /* sweep.png */,
 				4233AE1015D94601004056B5 /* linksbutton.png */,
 				4233AE1115D94601004056B5 /* linksbutton@2x.png */,
 				4233ADCF15D918E7004056B5 /* sweep@2x.png */,
@@ -590,7 +587,6 @@
 				4233ADAC15D7CA60004056B5 /* Default.png in Resources */,
 				4233ADAF15D7CA63004056B5 /* Default@2x.png in Resources */,
 				4233ADB915D8F58B004056B5 /* LoadingHUD.xib in Resources */,
-				4233ADD215D918E7004056B5 /* sweep.png in Resources */,
 				4233ADD315D918E7004056B5 /* sweep@2x.png in Resources */,
 				4233ADD415D918E7004056B5 /* gear.png in Resources */,
 				4233ADD515D918E7004056B5 /* gear@2x.png in Resources */,
