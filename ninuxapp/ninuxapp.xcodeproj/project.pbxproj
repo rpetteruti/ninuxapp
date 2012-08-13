@@ -48,6 +48,20 @@
 		B541E5731587E5CF00207BCB /* MapVisualizationOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C0BA3D1587E20A0054C43F /* MapVisualizationOptionsViewController.xib */; };
 		B56DC1F915D7BB76009F9F4C /* MapOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26C15D6ED84009C8F25 /* MapOptionsViewController.xib */; };
 		B56DC1FB15D7BCA5009F9F4C /* MapOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237B26B15D6ED83009C8F25 /* MapOptionsViewController.m */; };
+		B56DC1FC15D7CFDD009F9F4C /* e-mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B25715D6E4F7009C8F25 /* e-mail.png */; };
+		B56DC1FD15D7CFDD009F9F4C /* e-mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B25815D6E4F8009C8F25 /* e-mail@2x.png */; };
+		B56DC1FE15D7D021009F9F4C /* wikia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26215D6E6DF009C8F25 /* wikia@2x.png */; };
+		B56DC1FF15D7D021009F9F4C /* wikia.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26315D6E6E3009C8F25 /* wikia.png */; };
+		B56DC20015D7D034009F9F4C /* maila@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26015D6E6DC009C8F25 /* maila@2x.png */; };
+		B56DC20115D7D034009F9F4C /* maila.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26115D6E6DD009C8F25 /* maila.png */; };
+		B56DC20215D7D1B8009F9F4C /* logo_ninux@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B26815D6E793009C8F25 /* logo_ninux@2x.png */; };
+		B56DC20315D7D1B8009F9F4C /* logo_ninux.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22A15D66428009C8F25 /* logo_ninux.png */; };
+		B56DC20415D7D1D7009F9F4C /* logo_ninux_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B23615D66FAB009C8F25 /* logo_ninux_pic.png */; };
+		B56DC20515D7D1F7009F9F4C /* links_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24715D68F61009C8F25 /* links_pic.png */; };
+		B56DC20615D7D1F7009F9F4C /* links.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22015D66197009C8F25 /* links.png */; };
+		B56DC20715D7D1F7009F9F4C /* links@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B22115D66197009C8F25 /* links@2x.png */; };
+		B56DC20C15D7D4DD009F9F4C /* Sweep.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B24515D68A90009C8F25 /* Sweep.png */; };
+		B56DC20E15D7D4EB009F9F4C /* Page_curl.png in Resources */ = {isa = PBXBuildFile; fileRef = 4237B27315D6F611009C8F25 /* Page_curl.png */; };
 		B5912EE515D6717000A7676F /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5912EE315D6717000A7676F /* ArticleCell.m */; };
 		B5912EE615D6717000A7676F /* ArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5912EE415D6717000A7676F /* ArticleCell.xib */; };
 		B5912EEF15D671EE00A7676F /* UILabel+VerticalAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = B5912EEE15D671EE00A7676F /* UILabel+VerticalAlign.m */; };
@@ -464,6 +478,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56DC20E15D7D4EB009F9F4C /* Page_curl.png in Resources */,
+				B56DC20C15D7D4DD009F9F4C /* Sweep.png in Resources */,
+				B56DC20515D7D1F7009F9F4C /* links_pic.png in Resources */,
+				B56DC20615D7D1F7009F9F4C /* links.png in Resources */,
+				B56DC20715D7D1F7009F9F4C /* links@2x.png in Resources */,
+				B56DC20415D7D1D7009F9F4C /* logo_ninux_pic.png in Resources */,
+				B56DC20215D7D1B8009F9F4C /* logo_ninux@2x.png in Resources */,
+				B56DC20315D7D1B8009F9F4C /* logo_ninux.png in Resources */,
+				B56DC20015D7D034009F9F4C /* maila@2x.png in Resources */,
+				B56DC20115D7D034009F9F4C /* maila.png in Resources */,
+				B56DC1FE15D7D021009F9F4C /* wikia@2x.png in Resources */,
+				B56DC1FF15D7D021009F9F4C /* wikia.png in Resources */,
+				B56DC1FC15D7CFDD009F9F4C /* e-mail.png in Resources */,
+				B56DC1FD15D7CFDD009F9F4C /* e-mail@2x.png in Resources */,
 				B56DC1F915D7BB76009F9F4C /* MapOptionsViewController.xib in Resources */,
 				4237B25B15D6E54C009C8F25 /* InfoViewController.xib in Resources */,
 				B5C22134155E9E4E0065E0CD /* InfoPlist.strings in Resources */,

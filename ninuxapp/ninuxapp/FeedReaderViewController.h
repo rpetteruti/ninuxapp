@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ArticleCell.h"
-//#import "MBProgressHUD.h"
-//#import "ReadMoreCell.h"
-//#import "FeaturedCell.h"
-//#import "Reachability.h"
 #import "UILabel+VerticalAlign.h"
 #import "ArticleWebViewController.h"
 
@@ -33,16 +29,14 @@
 	NSMutableArray * stories;
 	
 	IBOutlet ArticleCell *tmpCell;
-	//IBOutlet ReadMoreCell *tmpReadMoreCell;
-	//IBOutlet FeaturedCell *tmpFeaturedCell;
-	// a temporary item; added to the "stories" array one at a time, and cleared for the next one
+
 	NSMutableDictionary * item;
 	
 	NSString * currentElement;
 	NSMutableString * currentTitle, * currentDate, * currentSummary, * currentLink, * currentImageUrl, * currentLuogoOra;
 	
 	NSString *URLToOpenString;
-	//MBProgressHUD *HUD;
+
 	BOOL loading;
 	BOOL loadingArticle;
 	int currentPage;
