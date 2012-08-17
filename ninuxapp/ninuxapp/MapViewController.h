@@ -37,6 +37,8 @@
     double lastMapUpdate;
     LoadingHUD *hud;
     
+    NSString *jsonURL;
+    
 }
 
 

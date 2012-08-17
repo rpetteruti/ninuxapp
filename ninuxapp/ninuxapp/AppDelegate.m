@@ -32,6 +32,13 @@
     [self.window makeKeyAndVisible];
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
     
+    NSDictionary* userInfo = [launchOptions valueForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
+    NSDictionary *apsInfo = [userInfo objectForKey:@"aps"];
+    if( [apsInfo objectForKey:@"alert"] != NULL)
+    {
+        self.tabBarController.selectedIndex=1;
+    }
+    
     return YES;
 }
 
@@ -212,13 +219,15 @@
     
     if (application.applicationState == UIApplicationStateActive) {
         // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Did receive a Remote Notification"
-                                                            message:[NSString stringWithFormat:@"The application received this remote notification while it was running:\n%@",
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Messaggio da Ninux"
+                                                            message:[NSString stringWithFormat:@"%@",
                                                                      [[userInfo objectForKey:@"aps"] objectForKey:@"alert"]]
                                                            delegate:self
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
         [alertView show];
+        self.tabBarController.selectedIndex=1;
+        NSLog(@"Index to select: %@",[userInfo objectForKey:@"indextoselect"] );
         
     }
     

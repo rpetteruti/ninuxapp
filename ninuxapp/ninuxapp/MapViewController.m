@@ -37,6 +37,8 @@
     [clearLinks setHidden:YES];
     [self zoomOnCoord:CLLocationCoordinate2DMake(41.8934, 12.4960) zoomLevel:0.2];
     
+    jsonURL = @"http://map.ninux.org/nodes.json";
+    
     [[NSBundle mainBundle] loadNibNamed:@"LoadingHUD" owner:self options:nil];
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"LoadingHUD" owner:self options:nil];
     // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
@@ -436,7 +438,7 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self createEditableCopyOfDatabaseIfNeeded];//check if i need to create a writable file of the sqlite database
     NSError* error = nil;
-    NSString *rawJson = [NSString stringWithContentsOfURL:[NSURL URLWithString: @"http://map.ninux.org/nodes.json"] encoding:NSASCIIStringEncoding error:&error];
+    NSString *rawJson = [NSString stringWithContentsOfURL:[NSURL URLWithString: jsonURL] encoding:NSASCIIStringEncoding error:&error];
     
     NSDictionary *items = [rawJson JSONValue];
     NSArray *types = [items allKeys];//here i have all the types of the nodes
