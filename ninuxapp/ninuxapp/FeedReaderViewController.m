@@ -88,9 +88,6 @@
 
 - (void)updateFeed{
 	// Add HUD to screen
-	if ([self notConnected]) {
-		return;
-	}
 	if(loading || loadingArticle) return;
 	loading=YES;
 	
