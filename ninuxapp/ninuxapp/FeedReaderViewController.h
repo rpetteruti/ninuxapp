@@ -56,10 +56,16 @@
 @property (nonatomic,retain) NSString *URLToOpenString;
 @property (nonatomic,retain) NSString *indiceTab;
 
+/*!
+ @function parseXMLFileAtURL
+ Start parsing the xml file found in URL
+ */
 -(void) parseXMLFileAtURL:(NSString *)URL;
+/*!
+ @function updateFeed
+ Update the rss feed stored in URLToOpenString var
+ */
 -(void) updateFeed;
-- (int)findSpaceIndex:(NSString *)testo withIndex:(int) cutIndex;
-- (BOOL)notConnected;
 
 
 

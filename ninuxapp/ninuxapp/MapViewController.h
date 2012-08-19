@@ -51,13 +51,36 @@
 @property (nonatomic, retain) LoadingHUD *hud;
 
 
-
+/*!
+ @function reloadTable
+ Reload the table with the found nodes
+ */
 -(IBAction)reloadTable:(id)sender;
+/*!
+ @function findNode
+ Search a node in the local database
+ */
 -(IBAction)findNode:(id) sender;
+/*!
+ @function drawLine
+ It is used to draw a line that is a wireless link between two nodes
+ */
 -(IBAction)drawLine:(id)sender;
+/*!
+ @function doLookForLinks
+ Is used to find all wireless link between two nodes
+ */
 -(IBAction)doLookForLinks:(id)sender;
+/*!
+ @function doClearLinks
+ Is used to remove all links on the map
+ */
 -(IBAction)doClearLinks:(id)sender;
 -(void) displayLinkLines;
+/*!
+ @function setMapType
+ Change the type of the map (standard, hybrid and satellite)
+ */
 -(void) setMapType:(NSUInteger)type;
 
 @end

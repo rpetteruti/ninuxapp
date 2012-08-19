@@ -14,8 +14,15 @@
 }
 
 
-
+/*!
+ @function sendMail
+ Send an email to the developer
+ */
 -(IBAction) sendMail;
+/*!
+ @function goToWeb
+ Open safari with the link specified
+ */
 -(IBAction) goToWeb;
 
 

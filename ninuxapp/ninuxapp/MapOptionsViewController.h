@@ -28,5 +28,9 @@ IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, assign) id <MapOptionsDelegate> delegate;
 @property (nonatomic, assign) NSInteger state;
 
+/*!
+ @function valueChanged
+ It is called when a type of map is selected and call the delegate method
+ */
 -(IBAction) valueChanged;
 @end
