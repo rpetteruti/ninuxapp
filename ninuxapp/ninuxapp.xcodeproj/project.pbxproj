@@ -135,8 +135,8 @@
 		4233AE0915D93940004056B5 /* logoact@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoact@2x.png"; sourceTree = "<group>"; };
 		4233AE1015D94601004056B5 /* linksbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linksbutton.png; sourceTree = "<group>"; };
 		4233AE1115D94601004056B5 /* linksbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linksbutton@2x.png"; sourceTree = "<group>"; };
-		4233AE1415D94BA1004056B5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		4233AE1615D94BA3004056B5 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		4233AE1415D94BA1004056B5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		4233AE1615D94BA3004056B5 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		4233AE1815D95109004056B5 /* icon_wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_wood.png; sourceTree = "<group>"; };
 		4233AE1A15D952AD004056B5 /* icon_metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_metal.png; sourceTree = "<group>"; };
 		4233AE1C15D9544B004056B5 /* iconabrushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconabrushed.png; sourceTree = "<group>"; };
@@ -319,6 +319,8 @@
 		42C0BA4A1587E4400054C43F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4233AE1615D94BA3004056B5 /* icon@2x.png */,
+				4233AE1415D94BA1004056B5 /* icon.png */,
 				4233ADAE15D7CA63004056B5 /* Default@2x.png */,
 				4233ADAB15D7CA60004056B5 /* Default.png */,
 				4237B27315D6F611009C8F25 /* Page_curl.png */,
@@ -436,8 +438,6 @@
 				4233AE1C15D9544B004056B5 /* iconabrushed.png */,
 				4233AE1A15D952AD004056B5 /* icon_metal.png */,
 				4233AE1815D95109004056B5 /* icon_wood.png */,
-				4233AE1615D94BA3004056B5 /* icon@2x.png */,
-				4233AE1415D94BA1004056B5 /* icon.png */,
 				42AA28B415B870F70066CD83 /* nodes.sqlite */,
 				B519BEB3155ECEB500B3EC92 /* SBJson */,
 				B5C2212F155E9E4E0065E0CD /* ninuxapp */,
